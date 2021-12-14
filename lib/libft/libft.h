@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpaci <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: pceccoli <pceccoli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 18:25:13 by mpaci             #+#    #+#             */
-/*   Updated: 2021/01/29 18:45:45 by mpaci            ###   ########.fr       */
+/*   Updated: 2021/12/14 17:24:22 by pceccoli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ char						*ft_strnstr(const char *haystack,
 								const char *needle, size_t len);
 char						*ft_strrchr(const char *str, int c);
 void						*ft_calloc(size_t count, size_t size);
+void						*ft_realloc(void *ptr, size_t newsize);
 char						*ft_strdup(const char *s1);
 size_t						ft_strlcat(char *dst,
 								const char *src, size_t dstsize);
