@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pceccoli <pceccoli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 02:49:43 by pceccoli          #+#    #+#             */
-/*   Updated: 2021/12/13 17:59:38 by pceccoli         ###   ########.fr       */
+/*   Updated: 2021/12/14 17:50:42 by pceccoli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,5 @@ int	main(int ac, char **av, char **env)
 		if (!parser(&all))
 			ft_printf("Error.\n");
 		//execve("/bin/"input, av, env);
-		printf("input: %s \n dir: %s", all.input, all.dir);
 	}
 }

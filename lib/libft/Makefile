@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mpaci <marvin@42.fr>                       +#+  +:+       +#+         #
+#    By: pceccoli <pceccoli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/01 15:13:32 by mpaci             #+#    #+#              #
-#    Updated: 2021/02/01 15:13:38 by mpaci            ###   ########.fr        #
+#    Updated: 2021/12/14 17:24:49 by pceccoli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ SRCS		= ft_memset.c \
 				ft_toupper.c \
 				ft_tolower.c \
 				ft_calloc.c \
+				ft_realloc.c \
 				ft_strdup.c \
 				ft_substr.c \
 				ft_strjoin.c \
