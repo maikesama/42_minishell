@@ -46,7 +46,7 @@ char	*charjoin(char	*s, char c, int max)
 	ret[i++] = c;
 	ret[i] = 0;
 	free(s);
-	return (ret); 
+	return (ret);
 }
 
 int	ft_searchnextlen(t_all *all, int i)
@@ -102,6 +102,7 @@ void	input_tok(t_all *all)
 		}
 		i++;
 	}
+	//PKpkPkPkpKkpk
 }
 
 int	parser(t_all *all)
@@ -113,5 +114,10 @@ int	parser(t_all *all)
 		return (0);
 	new_input(all);//add delete spaces if more than 1;
 	input_tok(all);
+	while (all->tok[i])
+	{
+		ft_printf("%s\n", all->tok[i]);
+		i++;
+	}
 	return (1);
 }
