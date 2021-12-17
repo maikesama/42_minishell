@@ -10,6 +10,7 @@ SOURCES = main.c\
 			pwd.c\
 			parser_ut1.c\
 			parser_ut2.c\
+			tokenizer.c
 			
 OBJECTS = $(SOURCES:.c=.o)
 LIBS = -L./lib/libft -L./lib/ft_printf -lft -lftprintf 
