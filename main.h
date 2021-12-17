@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpaci <mpaci@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pceccoli <pceccoli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 02:50:01 by pceccoli          #+#    #+#             */
-/*   Updated: 2021/12/17 15:49:31 by mpaci            ###   ########.fr       */
+/*   Updated: 2021/12/17 16:53:49 by pceccoli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@ int		parser(t_all *all);
 void	print_dir(t_all *all);
 void	new_input(t_all *all);
 void	input_tok(t_all *all);
+void	copy_erase(t_all *all, int *i, char *tmp, int *j);
 
 #endif
