@@ -49,41 +49,55 @@ char	*charjoin(char	*s, char c, int max)
 	return (ret); 
 }
 
+int	ft_searchnextlen(t_all *all, int i)
+{
+	int	len;
+
+	len = 0;
+	while (all->input[i] != ' ' && all->input[i])
+	{
+		if (all->input[i] == '\'')
+			all->flag1 *= -1;
+		if (all->input[i] == '"')
+			all->flag2 *= -1;
+		len++;
+		i++;
+	}
+	return (len);
+}
+
 void	input_tok(t_all *all)
 {
 	int	j;
 	int	i;
 	int	len;
-	int	start;
+	int	x;
 
 	len = 0;
 	i = 0;
-	start = 0;
-	all->tok = (char **)ft_calloc(how_many_spaces(all) + 2, sizeof(char *));
+	x = 0;
+	all->tok = ft_calloc(how_many_spaces(all) + 2, sizeof(*all->tok));
+	if (!all->tok)
+		exit(EXIT_FAILURE);
 	j = 0;
 	while (all->input[i] && all->input)
 	{
-		while (all->input[i] != ' ' && all->input[i])
-		{
-			if (all->input[i] == '\'')
-				all->flag1 *= -1;
-			if (all->input[i] == '"')
-				all->flag2 *= -1;
-			len++;
-			i++;
-		}
-		if ((all->input[i] == '\0' || all->input[i] == ' ') && all->flag1 == 1 && all->flag2 == 1)
+		len = ft_searchnextlen(all, i);
+		if ((len && all->flag1 == 1 && all->flag2 == 1))
 		{
 			all->tok[j] = (char *)ft_calloc(len + 1, 1);
-			while (start < (start + len) && all->input[start])
+			if (!all->tok[j])
+				exit(EXIT_FAILURE);
+			len += i;
+			while (i < len && all->input[i])
 			{
-				all->tok[j][start] = all->input[start];
-				start++;
+				all->tok[j][x] = all->input[i];
+				i++;
+				x++;
 			}
 			j++;
-			start++;
 			len = 0;
-			ft_printf("%d\n",j);
+			x = 0;
 		}
 		i++;
 	}
@@ -97,11 +111,6 @@ int	parser(t_all *all)
 	if (!check_quotes(all->input) || !check_special(all->input))
 		return (0);
 	new_input(all);//add delete spaces if more than 1 && add spaces for "" and  '';
-	input_tok(all);//debug
-	while (all->tok[i])
-	{
-		printf("%s\n", all->tok[i]);
-		i++;
-	}
+	input_tok(all);
 	return (1);
 }
