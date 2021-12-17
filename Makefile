@@ -36,3 +36,5 @@ fclean: clean
 	@make fclean -C ./lib/ft_printf
 
 re: fclean all
+
+.PHONY: all clean fclean re
