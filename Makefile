@@ -10,6 +10,7 @@ SOURCES = main.c\
 			pwd.c\
 			parser_ut1.c\
 			parser_ut2.c\
+			parser_ut3.c\
 			tokenizer.c
 			
 OBJECTS = $(SOURCES:.c=.o)
