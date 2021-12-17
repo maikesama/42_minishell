@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpaci <mpaci@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pceccoli <pceccoli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 15:00:00 by pceccoli          #+#    #+#             */
-/*   Updated: 2021/12/16 14:28:38 by mpaci            ###   ########.fr       */
+/*   Updated: 2021/12/17 15:19:45 by pceccoli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ int	ft_searchnextlen(t_all *all, int i)
 	return (len);
 }
 
+
+
 void	input_tok(t_all *all)
 {
 	int	j;
@@ -96,7 +98,6 @@ void	input_tok(t_all *all)
 				x++;
 			}
 			j++;
-			len = 0;
 			x = 0;
 		}
 		i++;
@@ -110,7 +111,7 @@ int	parser(t_all *all)
 	i = 0;
 	if (!check_quotes(all->input) || !check_special(all->input))
 		return (0);
-	new_input(all);//add delete spaces if more than 1 && add spaces for "" and  '';
+	new_input(all);//add delete spaces if more than 1;
 	input_tok(all);
 	return (1);
 }
