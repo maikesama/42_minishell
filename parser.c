@@ -20,7 +20,6 @@ int	parser(t_all *all)
 	if (!check_quotes(all->input) || !check_special(all->input))
 		return (0);
 	new_input(all);
-	ft_printf("%s\n", all->input);
 	input_tok(all);
 	return (1);
 }
