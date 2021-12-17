@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.h                                             :+:      :+:    :+:   */
+/*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pceccoli <pceccoli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mpaci <mpaci@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 02:50:01 by pceccoli          #+#    #+#             */
-/*   Updated: 2021/12/10 15:58:12 by pceccoli         ###   ########.fr       */
+/*   Updated: 2021/12/16 14:48:07 by mpaci            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	MAIN_H
+#ifndef MAIN_H
 # define MAIN_H
 # include <readline/readline.h>
 # include <readline/history.h>
@@ -23,18 +23,20 @@
 # include "./lib/ft_printf/ft_printf.h"
 # include "./lib/parser.h"
 
-typedef struct  s_all
+typedef struct s_all
 {
-	char    *input;
-	char    *dir;
-	t_redir	*redir;
+	char	*input;
+	char	**tok;
+	char	*dir;
+	t_ops	*ops;
 	int		flag1;
 	int		flag2;
-}               t_all;
+}				t_all;
 
 int		take_imput(char *str);
 
 int		parser(t_all *all);
 void	print_dir(t_all *all);
+void	new_input(t_all *all);
 
 #endif

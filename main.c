@@ -10,13 +10,27 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "./main.h"
+
+void	initialize_struct(t_all *all)
+{
+	all->flag1 = 1;
+	all->flag2 = 1;
+	all->ops->arrow = 0;
+	all->ops->worra = 0;
+	all->ops->darrow = 0;
+	all->ops->dworra = 0;
+	all->ops->pipe = 0;
+}
 
 void	take_input(t_all *all)
 {
 	all->input = readline("\e[33m\n>>>\e[0m ");
 	if (strlen(all->input) != 0)
+	{
 		add_history(all->input);
+		initialize_struct(all);
+	}
 	//if (input == ^D || ^C)
 	else
 		return ;
@@ -47,8 +61,10 @@ void	take_input(t_all *all)
 int	main(int ac, char **av, char **env)
 {
 	t_all	all;
-	
-	while(1)
+	t_ops	ops;
+
+	all.ops = &ops;
+	while (1)
 	{
 		print_dir(&all);
 		take_input(&all);

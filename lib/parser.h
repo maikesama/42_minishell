@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mpaci <mpaci@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/16 14:28:48 by mpaci             #+#    #+#             */
+/*   Updated: 2021/12/16 14:28:50 by mpaci            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PARSER_H
 # define PARSER_H
 # include <stdlib.h>
@@ -5,16 +17,19 @@
 # include "./libft/libft.h"
 # include "./ft_printf/ft_printf.h"
 
-typedef struct s_redir
+typedef struct s_ops
 {
 	int	arrow;
 	int	worra;
 	int	darrow;
 	int	dworra;
-}				t_redir;
+	int	pipe;
+}				t_ops;
 
-int	check_special(char *str);
-int	spec_chars(char c);
-int	check_quotes(const char *input);
+int		check_special(char *str);
+int		spec_chars(char c);
+int		check_quotes(const char *input);
+void	jeyer(char	*str, int i, int *j, char spec_char);
+int		add_spaces(char *str, char spec_char);
 
 #endif
