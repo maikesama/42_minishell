@@ -6,7 +6,7 @@
 /*   By: mpaci <mpaci@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 02:50:01 by pceccoli          #+#    #+#             */
-/*   Updated: 2021/12/16 14:48:07 by mpaci            ###   ########.fr       */
+/*   Updated: 2021/12/17 15:49:31 by mpaci            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@ int		take_imput(char *str);
 int		parser(t_all *all);
 void	print_dir(t_all *all);
 void	new_input(t_all *all);
+void	input_tok(t_all *all);
 
 #endif
