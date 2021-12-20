@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./main.h"
+#include "./../headers/main.h"
 
 void	initialize_struct(t_all *all)
 {
@@ -64,6 +64,8 @@ int	main(int ac, char **av, char **env)
 	t_ops	ops;
 
 	all.ops = &ops;
+	if (ac != 1 || !av || !env)
+		return (0);
 	while (1)
 	{
 		print_dir(&all);
