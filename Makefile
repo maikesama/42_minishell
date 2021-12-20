@@ -26,7 +26,7 @@ $(NAME) :$(OBJECTS)
 	@$(CC) $(CFLAGS) -o $@ $^ $(LIBS)
 	@echo "\033[32m"$@" compiled successfully\033[0m"
 
-$(OBJECTS) : $(OBJDIR)/%.o : $(SRCDIR)/%.c | libraries
+$(OBJECTS) : $(OBJDIR)/%.o : $(SRCDIR)/%.c $(HEADERS) | libraries
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -c $< -o $@
 	@echo "\033[34m"$<" compiled successfully\033[0m"
