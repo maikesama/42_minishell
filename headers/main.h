@@ -19,9 +19,9 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <errno.h>
-# include "./lib/libft/libft.h"
-# include "./lib/ft_printf/ft_printf.h"
-# include "./lib/parser.h"
+# include "../lib/libft/libft.h"
+# include "../lib/ft_printf/ft_printf.h"
+# include "./parser.h"
 
 typedef struct s_all
 {
@@ -33,8 +33,7 @@ typedef struct s_all
 	int		flag2;
 }				t_all;
 
-int		take_imput(char *str);
-
+void	take_input(t_all *all);
 int		parser(t_all *all);
 void	print_dir(t_all *all);
 void	new_input(t_all *all);

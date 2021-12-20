@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "./../../headers/main.h"
 
 int	check_quotes(const char *input)
 {

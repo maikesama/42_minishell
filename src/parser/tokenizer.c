@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "./../../headers/main.h"
 
 int	how_many_spaces(t_all *all)
 {
