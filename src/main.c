@@ -66,6 +66,7 @@ int	main(int ac, char **av, char **env)
 	all.ops = &ops;
 	if (ac != 1 || !av || !env)
 		return (0);
+	get_env(&all, env);
 	while (1)
 	{
 		print_dir(&all);
