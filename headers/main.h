@@ -31,6 +31,8 @@ typedef struct s_all
 	t_ops	*ops;
 	int		flag1;
 	int		flag2;
+	char	**mini_env;
+	char	**env_path;
 }				t_all;
 
 void	take_input(t_all *all);
@@ -39,5 +41,6 @@ void	print_dir(t_all *all);
 void	new_input(t_all *all);
 void	input_tok(t_all *all);
 void	copy_erase(t_all *all, int *i, char *tmp, int *j);
+void	get_env(t_all *all, char **env);
 
 #endif
