@@ -25,6 +25,18 @@ void	get_path(char *path_line, t_all *all)
 	free (tmp);
 }
 
+void	print_env(t_all *all)
+{
+	int	i;
+
+	i = 0;
+	while (all->mini_env[i])
+	{
+		ft_printf("%s\n", all->mini_env[i]);
+		i++;
+	}
+}
+
 void	get_env(t_all *all, char **env)
 {
 	int	i;
