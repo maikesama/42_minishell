@@ -11,7 +11,7 @@ SOURCES = $(shell find $(SRCDIR) -name "*.c")
 
 OBJECTS = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SOURCES))
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 LIBS = -L./lib/libft -L./lib/ft_printf -lft -lftprintf -lreadline
 

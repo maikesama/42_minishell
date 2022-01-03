@@ -12,6 +12,19 @@
 
 #include "./../headers/main.h"
 
+void	ft_exit(t_all *all)
+{
+	if (all->mini_env)
+		free_matrix(all->mini_env);
+	if (all->tok)
+		free_matrix(all->tok);
+	if (all->env_path)
+		free_matrix(all->env_path);
+	if (all->env_var)
+		free_matrix(all->env_var);
+	exit(EXIT_SUCCESS);
+}
+
 void	initialize_struct(t_all *all)
 {
 	all->flag1 = 1;
@@ -36,28 +49,6 @@ void	take_input(t_all *all)
 		return ;
 }
 
-/*char	*command_with_path(const char *str, char **env)
-{
-	int	i;
-	char	*path;
-	char	**pathsplit;
-	char	**mycmd;
-
-	i = 0;
-	while (ft_memcmp(env[i], "PATH=", 5))
-		i++;
-	path = ft_substr(env[i], 5, ft_strlen(env[i] - 5));
-	pathsplit = ft_split(path, ':');
-	free(path);
-	i = 0;
-	while (pathsplit[i])
-	{
-		ft_strjoin(pathsplit[i], "/");
-		i++;
-	}
-
-}*/
-
 int	main(int ac, char **av, char **env)
 {
 	t_all	all;
@@ -69,10 +60,7 @@ int	main(int ac, char **av, char **env)
 	get_env(&all, env);
 	while (1)
 	{
-		print_dir(&all);
 		take_input(&all);
-		if (!parser(&all))
-			ft_printf("Error.\n");
-		//execve("/bin/"input, av, env);
+		parser(&all);
 	}
 }

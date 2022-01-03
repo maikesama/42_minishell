@@ -19,6 +19,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <errno.h>
+# include <sys/wait.h>
 # include "../lib/libft/libft.h"
 # include "../lib/ft_printf/ft_printf.h"
 # include "./parser.h"
@@ -28,11 +29,13 @@ typedef struct s_all
 	char	*input;
 	char	**tok;
 	char	*dir;
+	char	*cmd;
 	t_ops	*ops;
 	int		flag1;
 	int		flag2;
 	char	**mini_env;
 	char	**env_path;
+	char	**env_var;
 }				t_all;
 
 void	take_input(t_all *all);
@@ -42,5 +45,15 @@ void	new_input(t_all *all);
 void	input_tok(t_all *all);
 void	copy_erase(t_all *all, int *i, char *tmp, int *j);
 void	get_env(t_all *all, char **env);
+void	change_directory(char	*path, t_all *all);
+void	print_env(t_all *all);
+int		line_counter(char **env);
+void	free_matrix(char **mx);
+void	ft_exit(t_all *all);
+void	executioner(t_all *all);
+int		equal_count(t_all *all);
+void	save_env_var(t_all *all);
+int		check_existence_var(t_all *all);
+int		check_existence_env(t_all *all);
 
 #endif
