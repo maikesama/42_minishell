@@ -14,9 +14,14 @@
 
 void	ft_exit(t_all *all)
 {
-	free_matrix(all->mini_env);
-	free_matrix(all->tok);
-	free_matrix(all->env_path);
+	if (all->mini_env)
+		free_matrix(all->mini_env);
+	if (all->tok)
+		free_matrix(all->tok);
+	if (all->env_path)
+		free_matrix(all->env_path);
+	if (all->env_var)
+		free_matrix(all->env_var);
 	exit(EXIT_SUCCESS);
 }
 
@@ -56,8 +61,6 @@ int	main(int ac, char **av, char **env)
 	while (1)
 	{
 		take_input(&all);
-		if (!parser(&all))
-			ft_printf("Error.\n");
-		//execve("/bin/"input, av, env);
+		parser(&all);
 	}
 }
