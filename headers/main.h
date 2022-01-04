@@ -55,5 +55,9 @@ int		equal_count(t_all *all);
 void	save_env_var(t_all *all);
 int		check_existence_var(t_all *all);
 int		check_existence_env(t_all *all);
+void	export_var(t_all *all);
+void	re_copy_var(t_all *all, char **tmp);
+void	re_copy_env(t_all *all, char **tmp);
+void	unset_var(t_all *all);
 
 #endif

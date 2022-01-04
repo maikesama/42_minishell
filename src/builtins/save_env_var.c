@@ -15,7 +15,7 @@ int	equal_count(t_all *all)
 	return (0);
 }
 
-void	re_copy(t_all *all, char **tmp)
+void	re_copy_var(t_all *all, char **tmp)
 {
 	int	i;
 
@@ -76,6 +76,6 @@ void	save_env_var(t_all *all)
 	ft_memcpy(tmp[i], all->tok[0], ft_strlen(all->tok[0]));
 	if (all->env_var)
 		free_matrix(all->env_var);
-	re_copy(all, tmp);
+	re_copy_var(all, tmp);
 	free_matrix(tmp);
 }
