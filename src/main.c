@@ -27,6 +27,7 @@ void	ft_exit(t_all *all)
 
 void	initialize_struct(t_all *all)
 {
+	all->echoflag = 0;
 	all->flag1 = 1;
 	all->flag2 = 1;
 	all->ops->arrow = 0;
@@ -38,8 +39,8 @@ void	initialize_struct(t_all *all)
 
 void	take_input(t_all *all)
 {
-	all->input = readline("\e[33m\n>>>\e[0m ");
-	if (strlen(all->input) != 0)
+	all->input = readline("\e[95mMiniShell>>>\e[0m ");
+	if (strlen(all->input) > 0)
 	{
 		add_history(all->input);
 		initialize_struct(all);

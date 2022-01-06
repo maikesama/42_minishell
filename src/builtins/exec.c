@@ -18,9 +18,13 @@ void	executioner(t_all *all)
 			i++;
 		}
 		if (err == -1)
+		{
 			perror(all->tok[0]);
+			exit(EXIT_FAILURE);
+		}
+		exit(EXIT_SUCCESS);
 	}
 	if (id != 0)
-		wait(0);
+		wait(0);	
 	return ;
 }

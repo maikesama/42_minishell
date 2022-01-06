@@ -23,9 +23,11 @@
 # include "../lib/libft/libft.h"
 # include "../lib/ft_printf/ft_printf.h"
 # include "./parser.h"
+# include "signal.h"
 
 typedef struct s_all
 {
+	int		echoflag;
 	char	*input;
 	char	**tok;
 	char	*dir;
@@ -59,5 +61,6 @@ void	export_var(t_all *all);
 void	re_copy_var(t_all *all, char **tmp);
 void	re_copy_env(t_all *all, char **tmp);
 void	unset_var(t_all *all);
+void	echo(t_all *all);
 
 #endif

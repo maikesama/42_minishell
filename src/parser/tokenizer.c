@@ -58,7 +58,7 @@ void	tokenizer(t_all *all, int *j, int *i, int *x)
 	len = ft_searchnextlen(all, *i);
 	if ((len && all->flag1 == 1 && all->flag2 == 1))
 	{
-		all->tok[*j] = (char *)ft_calloc(len + 1, 1);
+		all->tok[*j] = ft_calloc(len + 1, 1);
 		if (!all->tok[*j])
 			exit(EXIT_FAILURE);
 		len += *i;
@@ -83,6 +83,8 @@ void	input_tok(t_all *all)
 	len = 0;
 	i = 0;
 	x = 0;
+	if (!all->input)
+		exit(EXIT_FAILURE);
 	all->tok = ft_calloc(how_many_spaces(all) + 2, sizeof(*all->tok));
 	if (!all->tok)
 		exit(EXIT_FAILURE);
