@@ -25,6 +25,13 @@
 # include "./parser.h"
 # include "signal.h"
 
+typedef struct s_piper
+{
+	char	*cmd;
+	char	**args;
+	//t_all	*all;
+}				t_piper;
+
 typedef struct s_all
 {
 	int		echoflag;
@@ -62,5 +69,7 @@ void	re_copy_var(t_all *all, char **tmp);
 void	re_copy_env(t_all *all, char **tmp);
 void	unset_var(t_all *all);
 void	echo(t_all *all);
+int		check_special(t_all *all, char *str);
+void    pipex(t_all *all);
 
 #endif

@@ -50,7 +50,7 @@ int	spec_chars(char c)
 	return (1);
 }
 
-int	check_special(char *str)
+int	check_special(t_all *all, char *str)
 {
 	int		i;
 	int		flag1;
@@ -65,6 +65,8 @@ int	check_special(char *str)
 		{
 			if (spec_chars(str[i]) == 0 && flag1 == 1 && flag2 == 1)
 				return (0);
+			if (str[i] == '|')
+				all->ops->pipe++;
 			i++;
 		}
 		if (str[i] == '"')
