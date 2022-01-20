@@ -1,0 +1,82 @@
+#include "./../../headers/main.h"
+
+void	child_red(t_all *all, int *i, int fd)
+{
+	char	*input;
+
+	if (!all->tok[*i + 1])
+		exit(EXIT_SUCCESS);
+	while (ft_strncmp(input, all->tok[*i + 1], ft_strlen(all->tok[*i + 1])))
+	{
+		input = readline("\e[95m>\e[0m ");
+		if (!ft_strncmp(input, all->tok[*i + 1], ft_strlen(all->tok[*i + 1])))
+		{
+			free(input);
+			ft_putchar_fd('\0', fd);
+			exit(EXIT_SUCCESS);
+		}
+		ft_putstr_fd(input, fd);
+		ft_putchar_fd('\n', fd);
+		free(input);
+	}
+}
+
+
+void	dworra(t_all *all, int *i)
+{
+	int		fd;
+	pid_t	red;
+
+	fd = -1;
+	all->fd_in = -1;
+	close(all->fd_in);
+	close(fd);
+	fd = open("/tmp/file", O_CREAT | O_RDWR | O_TRUNC, 0777);
+	if (fd == -1)
+	{
+		perror("fd");
+		return ;
+	}
+	red = fork();
+	if (red == -1)
+		return ;
+	if (red == 0)
+		child_red(all, i, fd);
+	else
+		waitpid(0, NULL, 0);
+	all->fd_in = dup(fd);
+	close(fd);
+	new_tok(all, i);
+}
+
+void	input(t_all *all, int *i)
+{
+	all->fd_in = -1;
+	close(all->fd_in);
+	if (all->tok[*i][1] == '<')
+	{
+		dworra(all, i);
+		return ;
+	}
+	all->fd_in = open(all->tok[*i + 1], O_RDONLY, 0777);
+	if (all->fd_in == -1)
+	{
+		perror(all->tok[*i + 1]);
+		return ;
+	}
+	new_tok(all, i);
+}
+
+void	reset_in_out(t_all *all)
+{
+	if (all->ops->arrow)
+	{
+		dup2(all->saved_stdout, 1);
+		close(all->saved_stdout);
+	}
+	if (all->ops->worra)
+	{
+		dup2(all->saved_stdin, 0);
+		close(all->saved_stdin);
+	}
+}

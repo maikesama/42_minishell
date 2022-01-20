@@ -56,9 +56,15 @@ int	parser(t_all *all)
 	}
 	new_input(all);
 	input_tok(all);
+	if (!all->ops->pipe)
+	{
+		redirect(all);
+		set_in_out(all);
+	}
 	read_cmd(all);
 	if (all->tok[0] && all->tok)
 		free_matrix(all->tok);
 	echof(all);
+	reset_in_out(all);
 	return (1);
 }

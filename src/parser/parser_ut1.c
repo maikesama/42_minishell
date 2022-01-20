@@ -39,7 +39,7 @@ int	spec_chars(char c)
 	int		j;
 	char	*str;
 
-	str = "%%;()&`/\\*[]#˜";
+	str = "%%;()&`\\*[]#˜";
 	j = 0;
 	while (str[j] && str[j] != c)
 	{
