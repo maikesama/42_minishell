@@ -96,6 +96,8 @@ void	set_in_out(t_all *all)
 	}
 	if (all->ops->worra)
 	{
+		if (all->ops->dworra)
+			all->fd_in = open("/tmp/file.txt", O_RDONLY);
 		dup2(all->fd_in, STDIN_FILENO);
 		close(all->fd_in);
 	}

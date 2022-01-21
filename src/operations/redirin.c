@@ -1,9 +1,18 @@
 #include "./../../headers/main.h"
 
-void	child_red(t_all *all, int *i, int fd)
+void	child_red(t_all *all, int *i)
 {
 	char	*input;
+	int		fd;
 
+	fd = -1;
+	close(fd);
+	fd = open("/tmp/file.txt", O_CREAT | O_RDWR | O_TRUNC, 0777);
+	if (fd == -1)
+	{
+		perror("fd");
+		return ;
+	}
 	if (!all->tok[*i + 1])
 		exit(EXIT_SUCCESS);
 	while (ft_strncmp(input, all->tok[*i + 1], ft_strlen(all->tok[*i + 1])))
@@ -12,7 +21,8 @@ void	child_red(t_all *all, int *i, int fd)
 		if (!ft_strncmp(input, all->tok[*i + 1], ft_strlen(all->tok[*i + 1])))
 		{
 			free(input);
-			ft_putchar_fd('\0', fd);
+			//ft_putchar_fd('\0', fd);
+			close(fd);
 			exit(EXIT_SUCCESS);
 		}
 		ft_putstr_fd(input, fd);
@@ -24,29 +34,22 @@ void	child_red(t_all *all, int *i, int fd)
 
 void	dworra(t_all *all, int *i)
 {
-	int		fd;
 	pid_t	red;
 
-	fd = -1;
 	all->fd_in = -1;
 	close(all->fd_in);
-	close(fd);
-	fd = open("/tmp/file", O_CREAT | O_RDWR | O_TRUNC, 0777);
-	if (fd == -1)
-	{
-		perror("fd");
-		return ;
-	}
+	all->ops->dworra++;
+
 	red = fork();
 	if (red == -1)
 		return ;
-	if (red == 0)
-		child_red(all, i, fd);
+	else if (red == 0)
+		child_red(all, i);
 	else
+	{
 		waitpid(0, NULL, 0);
-	all->fd_in = dup(fd);
-	close(fd);
-	new_tok(all, i);
+		new_tok(all, i);
+	}
 }
 
 void	input(t_all *all, int *i)
