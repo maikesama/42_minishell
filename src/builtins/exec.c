@@ -8,6 +8,11 @@ void	executioner(t_all *all)
 
 	i = 0;
 	id = fork();
+	if (id == -1)
+	{
+		perror("fork");
+		exit(EXIT_FAILURE);
+	}
 	if (id == 0)
 	{
 		while (all->env_path[i])
@@ -24,7 +29,6 @@ void	executioner(t_all *all)
 		}
 		exit(EXIT_SUCCESS);
 	}
-	if (id != 0)
-		wait(0);	
+	waitpid(0, NULL, 0);	
 	return ;
 }

@@ -26,7 +26,6 @@ typedef struct s_ops
 	int	pipe;
 }				t_ops;
 
-int		check_special(char *str);
 int		spec_chars(char c);
 int		check_quotes(const char *input);
 void	jeyer(char	*str, int i, int *j, char spec_char);

@@ -24,9 +24,18 @@
 # include "../lib/ft_printf/ft_printf.h"
 # include "./parser.h"
 # include "signal.h"
+# include "fcntl.h"
+
+typedef struct s_piper
+{
+	char	**cmd;
+	char	***args;
+	//t_all	*all;
+}				t_piper;
 
 typedef struct s_all
 {
+	int		redirected;
 	int		echoflag;
 	char	*input;
 	char	**tok;
@@ -38,6 +47,10 @@ typedef struct s_all
 	char	**mini_env;
 	char	**env_path;
 	char	**env_var;
+	int		fd_out;
+	int		fd_in;
+	int		saved_stdout;
+	int		saved_stdin;
 }				t_all;
 
 void	take_input(t_all *all);
@@ -62,5 +75,13 @@ void	re_copy_var(t_all *all, char **tmp);
 void	re_copy_env(t_all *all, char **tmp);
 void	unset_var(t_all *all);
 void	echo(t_all *all);
+int		check_special(t_all *all, char *str);
+void	pipex(t_all *all);
+void	set_in_out(t_all *all);
+void	reset_in_out(t_all *all);
+void	redirect(t_all *all);
+void	new_tok(t_all *all, int *i);
+void	re_copy_tok(t_all *all, char **tmp);
+void	input(t_all *all, int *i);
 
 #endif

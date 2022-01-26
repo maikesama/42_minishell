@@ -35,12 +35,34 @@ void	initialize_struct(t_all *all)
 	all->ops->darrow = 0;
 	all->ops->dworra = 0;
 	all->ops->pipe = 0;
+	all->saved_stdout = dup(1);
+	all->saved_stdin = dup(0);
+}
+
+int	valid_history(t_all *all)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (all->input[i])
+	{
+		if (all->input[i] == ' ' || all->input[i] == '\t')
+			j++;
+		i++;
+	}
+	if (j != i)
+		return (1);
+	return (0);
 }
 
 void	take_input(t_all *all)
 {
+	if (all->input)
+		free(all->input);
 	all->input = readline("\e[95mMiniShell>>>\e[0m ");
-	if (strlen(all->input) > 0)
+	if (valid_history(all))
 	{
 		add_history(all->input);
 		initialize_struct(all);
@@ -63,5 +85,8 @@ int	main(int ac, char **av, char **env)
 	{
 		take_input(&all);
 		parser(&all);
+		if (all.input)
+			free(all.input);
+		all.input = NULL;
 	}
 }
