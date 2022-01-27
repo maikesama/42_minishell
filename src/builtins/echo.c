@@ -1,5 +1,7 @@
 #include "./../../headers/main.h"
 
+//when variable dont exist and ""
+
 int	is_var(t_all *all, char *str)
 {
 	int	i;

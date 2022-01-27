@@ -17,7 +17,7 @@ void	read_cmd(t_all *all)
 	//int i = 0;
 	if (equal_count(all))
 		save_env_var(all);
-	if (all->ops->pipe)
+	else if (all->ops->pipe)
 		pipex(all);
 	else if (!ft_strncmp(all->tok[0], "cd", ft_strlen(all->tok[0])))
 		change_directory(all->tok[1], all);
