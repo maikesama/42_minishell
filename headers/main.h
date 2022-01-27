@@ -12,19 +12,24 @@
 
 #ifndef MAIN_H
 # define MAIN_H
-# include <readline/readline.h>
-# include <readline/history.h>
-# include <unistd.h>
-# include <string.h>
+
+# define RL_S "\1"
+# define RL_E "\2"
+
+# include <errno.h>
+# include <fcntl.h>
+# include <signal.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <errno.h>
+# include <string.h>
 # include <sys/wait.h>
-# include "../lib/libft/libft.h"
-# include "../lib/ft_printf/ft_printf.h"
+# include <unistd.h>
+
 # include "./parser.h"
-# include "signal.h"
-# include "fcntl.h"
+# include "../lib/ft_printf/ft_printf.h"
+# include "../lib/libft/libft.h"
+# include "readline/readline.h"
+# include "readline/history.h"
 
 typedef struct s_piper
 {
@@ -85,5 +90,7 @@ void	new_tok(t_all *all, int *i);
 void	re_copy_tok(t_all *all, char **tmp);
 void	input(t_all *all, int *i);
 void	write_on_opt(t_all *all, int *i);
+void	rl_replace_line (const char *text, int clear_undo);
+void	sig_handler(int signo);
 
 #endif
