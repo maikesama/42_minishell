@@ -33,8 +33,9 @@
 
 typedef struct s_piper
 {
-	char	**cmd;
-	char	***args;
+	char	*cmd;
+	char	**args;
+	int		fd[2];
 	//t_all	*all;
 }				t_piper;
 
@@ -88,8 +89,8 @@ void	redirect(t_all *all);
 void	new_tok(t_all *all, int *i);
 void	re_copy_tok(t_all *all, char **tmp);
 void	input(t_all *all, int *i);
+void	write_on_opt(t_all *all, int *i);
 void	rl_replace_line (const char *text, int clear_undo);
 void	sig_handler(int signo);
-
 
 #endif
