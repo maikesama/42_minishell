@@ -7,7 +7,7 @@ int	is_var(t_all *all, char *str)
 	int	i;
 
 	i = 0;
-	if (!all->env_var)
+	if (!all->env_var || !all->env_var[0])
 		return (0);
 	while (all->env_var[i])
 	{
@@ -62,6 +62,8 @@ void	echo_var(t_all *all, int *i, int *j)
 		l++;
 	}
 	*j += l;
+	if (all->tok[*i][*j] == '"')
+		*j += 1;
 	if (is_var(all, str))
 		write_var(all, str);
 	free(str);
@@ -83,7 +85,7 @@ void    echo_just_for_norm(t_all *all, int i, int *j)
 		}
 		else if (all->tok[i][*j] == '$' && all->flag1 == 1)
 			echo_var(all, &i, &*j);
-		else if (all->tok[i][*j])
+		if (all->tok[i][*j])
 		{
 			write(1, &all->tok[i][*j], 1);
 			*j += 1;
