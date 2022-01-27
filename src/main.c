@@ -59,15 +59,18 @@ int	valid_history(t_all *all)
 
 void	take_input(t_all *all)
 {
+	signal(SIGINT, sig_handler);
+	signal(SIGQUIT, SIG_IGN);
 	if (all->input)
 		free(all->input);
-	all->input = readline("\e[95mMiniShell>>>\e[0m ");
+	all->input = readline( RL_S"\e[95m"RL_E "MiniShell>>>" RL_S"\e[0m"RL_E );
+	if (all->input == NULL)
+		ft_exit(all);
 	if (valid_history(all))
 	{
 		add_history(all->input);
 		initialize_struct(all);
 	}
-	//if (input == ^D || ^C)
 	else
 		return ;
 }
@@ -77,6 +80,9 @@ int	main(int ac, char **av, char **env)
 	t_all	all;
 	t_ops	ops;
 
+	ft_bzero(&all, sizeof(all));
+	ft_bzero(&ops, sizeof(ops));
+	free(all.input);
 	all.ops = &ops;
 	if (ac != 1 || !av || !env)
 		return (0);
