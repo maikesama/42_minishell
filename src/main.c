@@ -14,6 +14,9 @@
 
 void	ft_exit(t_all *all)
 {
+	int	i;
+
+	i = 0;
 	if (all->mini_env)
 		free_matrix(all->mini_env);
 	if (all->tok)
@@ -63,7 +66,7 @@ void	take_input(t_all *all)
 	signal(SIGQUIT, SIG_IGN);
 	if (all->input)
 		free(all->input);
-	all->input = readline( RL_S"\e[95m"RL_E "MiniShell>>>" RL_S"\e[0m"RL_E );
+	all->input = readline( RL_S"\e[95m"RL_E "MiniShell>>> " RL_S"\e[0m"RL_E );
 	if (all->input == NULL)
 		ft_exit(all);
 	if (valid_history(all))

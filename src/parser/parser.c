@@ -14,7 +14,6 @@
 
 void	read_cmd(t_all *all)
 {
-	//int i = 0;
 	if (equal_count(all))
 		save_env_var(all);
 	else if (all->ops->pipe)
