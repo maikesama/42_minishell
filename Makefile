@@ -13,8 +13,7 @@ OBJECTS = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SOURCES))
 
 CFLAGS = -Wall -Wextra -Werror -g
 
-LIBS = -L./lib/libft -L./lib/ft_printf -lft -lftprintf -L /Users/$(USER)/.brew/opt/readline/lib -I /Users/$(USER)/.brew/opt/readline/include  -lreadline
-
+LIBS = -L./lib/libft -L./lib/ft_printf -lft -lftprintf -L /Users/$(USER)/.brew/opt/readline/lib -I /Users/$(USER)/.brew/opt/readline/include -lreadline
 
 #MACOS_INC = -I$(HOME)/homebrew/opt/readline/include
 #MACOS_LIB = -L$(HOME)/homebrew/opt/readline/lib 

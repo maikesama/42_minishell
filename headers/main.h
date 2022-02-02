@@ -35,8 +35,7 @@ typedef struct s_piper
 {
 	char	*cmd;
 	char	**args;
-	int		fd[2];
-	//t_all	*all;
+	int		**fd;
 }				t_piper;
 
 typedef struct s_all
@@ -92,5 +91,8 @@ void	input(t_all *all, int *i);
 void	write_on_opt(t_all *all, int *i);
 void	rl_replace_line (const char *text, int clear_undo);
 void	sig_handler(int signo);
+void	new_tok_pipe(t_all *all, int *i);
+void	pipe_execution(t_all *all, t_piper *piper, int *cnt);
+void	args_initializer(t_all *all, t_piper *piper, int *i);
 
 #endif

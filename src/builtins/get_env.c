@@ -19,12 +19,15 @@ void	get_path(char *path_line, t_all *all)
 	i = 0;
 	tmp = ft_substr(path_line, 5, ft_strlen(path_line) - 5);
 	all->env_path = ft_split(tmp, ':');
+	free(tmp);
 	while (all->env_path[i])
 	{
-		all->env_path[i] = ft_strjoin(all->env_path[i], "/");
+		tmp = ft_strjoin(all->env_path[i], "/");
+		ft_realloc(all->env_path[i], ft_strlen(tmp) + 1);
+		ft_memcpy(all->env_path[i], tmp, ft_strlen(tmp));
+		free(tmp);
 		i++;
 	}
-	free (tmp);
 }
 
 void	print_env(t_all *all)

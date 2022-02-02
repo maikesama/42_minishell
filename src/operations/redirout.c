@@ -22,16 +22,14 @@ void	new_tok(t_all *all, int *i)
 
 	j = 0;
 	n = 0;
-	if (!all->tok[1])
+	if (!all->tok[1] || !all->tok[*i + 1])
 		return ;
 	tmp = ft_calloc(line_counter(all->tok) - 1, sizeof(*tmp));
 	while (all->tok[j])
 	{
 		if (j == *i && all->tok[j + 1])
 			j += 2;
-		else if (j == *i && !all->tok[j + 1])
-			j += 1;
-		if (all->tok[j])
+		if (all->tok[j] && all->tok[j][0])
 		{
 			tmp[n] = ft_calloc(ft_strlen(all->tok[j]) + 1, 1);
 			ft_memcpy(tmp[n], all->tok[j], ft_strlen(all->tok[j]));

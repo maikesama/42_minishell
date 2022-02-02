@@ -21,7 +21,6 @@ void	child_red(t_all *all, int *i)
 		if (!ft_strncmp(input, all->tok[*i + 1], ft_strlen(all->tok[*i + 1])))
 		{
 			free(input);
-			//ft_putchar_fd('\0', fd);
 			close(fd);
 			exit(EXIT_SUCCESS);
 		}
