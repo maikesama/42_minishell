@@ -27,7 +27,7 @@ void	ft_wait(t_all *all, pid_t id)
 		all->status = WTERMSIG(status) + 128;
 	}
 	if (WIFEXITED(status))
-		all->status = WEXITSTATUS(status) + 127;
+		all->status = WEXITSTATUS(status);
 }
 
 void	executioner(t_all *all)

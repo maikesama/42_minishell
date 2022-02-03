@@ -12,20 +12,58 @@
 
 #include "./../headers/main.h"
 
-void	ft_exit(t_all *all)
+int	exit_error(t_all *all)
 {
 	int	i;
 
 	i = 0;
-	if (all->mini_env)
+	if (all->tok && all->tok[0][0])
+	{
+		if (all->tok[1][0])
+		{
+			if (all->tok[2])
+			{
+				ft_printf("exit: too many arguments\n");
+				return (1);
+			}	
+			while(all->tok[1][i])
+			{
+				
+				if (!ft_isdigit(all->tok[1][i]))
+				{
+					ft_printf("exit: %s: numeric argument required\n", all->tok[1]);
+					return (1);
+				}
+				i++;
+			}
+			all->status = ft_atoi(all->tok[1]);
+		}
+	}
+	return (0);
+}
+
+void	ft_exit(t_all *all)
+{
+	if (all->input == NULL)
+	{
+		if (all->mini_env)
 		free_matrix(all->mini_env);
-	if (all->tok)
-		free_matrix(all->tok);
-	if (all->env_path)
-		free_matrix(all->env_path);
-	if (all->env_var)
-		free_matrix(all->env_var);
-	exit(EXIT_SUCCESS);
+		if (all->env_path)
+			free_matrix(all->env_path);
+		if (all->env_var)
+			free_matrix(all->env_var);
+		exit(EXIT_SUCCESS);
+	}
+	if (exit_error(all) == 0)
+	{
+		if (all->mini_env)
+		free_matrix(all->mini_env);
+		if (all->env_path)
+			free_matrix(all->env_path);
+		if (all->env_var)
+			free_matrix(all->env_var);
+		exit(EXIT_SUCCESS);
+	}
 }
 
 void	initialize_struct(t_all *all)
