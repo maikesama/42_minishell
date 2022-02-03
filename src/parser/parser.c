@@ -30,7 +30,7 @@ void	read_cmd(t_all *all)
 		pid_status();
 	else if (!ft_strncmp(all->tok[0], "export", ft_strlen(all->tok[0])))
 		export_var(all);
-	else if (equal_count(all))
+	else if (equal_count(all, 0))
 		save_env_var(all);
 	else if (!ft_strncmp(all->tok[0], "cd", ft_strlen(all->tok[0])))
 		change_directory(all);

@@ -72,7 +72,7 @@ int		line_counter(char **env);
 void	free_matrix(char **mx);
 void	ft_exit(t_all *all);
 void	executioner(t_all *all);
-int		equal_count(t_all *all);
+int		equal_count(t_all *all, int line);
 void	save_env_var(t_all *all);
 int		check_existence_var(t_all *all);
 int		check_existence_env(t_all *all);

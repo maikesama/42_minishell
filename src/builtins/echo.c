@@ -57,7 +57,7 @@ void	skip_flags(t_all *all, int *i)
 
 	f = 0;
 	j = 2;
-	while (!ft_strncmp(all->tok[*i], "-n", 2))
+	while (all->tok[*i] && all->tok[*i][0] && !ft_strncmp(all->tok[*i], "-n", 2))
 	{
 		while (all->tok[*i][j])
 		{
@@ -72,7 +72,8 @@ void	skip_flags(t_all *all, int *i)
 			break ;
 		j = 2;
 		all->echoflag = 1;
-		*i += 1;
+		if (all->tok[*i][0])
+			*i += 1;
 	}
 }
 
@@ -89,6 +90,8 @@ void	echo(t_all *all)
 		return ;
 	}
 	skip_flags(all, &i);
+	if (!all->tok[i])
+		return ;
 	while (all->tok[i])
 	{
 		echo_just_for_norm(all, i, &j);
