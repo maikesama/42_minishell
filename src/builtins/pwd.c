@@ -7,4 +7,5 @@ void	print_dir(t_all *all)
 		return ;
 	ft_printf("%s", all->dir);
 	all->dir = NULL;
+	all->status = 0;
 }

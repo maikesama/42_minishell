@@ -24,7 +24,7 @@
 # include <string.h>
 # include <sys/wait.h>
 # include <unistd.h>
-
+# include <signal.h>
 # include "./parser.h"
 # include "../lib/ft_printf/ft_printf.h"
 # include "../lib/libft/libft.h"
@@ -56,6 +56,7 @@ typedef struct s_all
 	int		fd_in;
 	int		saved_stdout;
 	int		saved_stdin;
+	int		status;
 }				t_all;
 
 void	take_input(t_all *all);
@@ -65,7 +66,7 @@ void	new_input(t_all *all);
 void	input_tok(t_all *all);
 void	copy_erase(t_all *all, int *i, char *tmp, int *j);
 void	get_env(t_all *all, char **env);
-void	change_directory(char	*path, t_all *all);
+void	change_directory(t_all *all);
 void	print_env(t_all *all);
 int		line_counter(char **env);
 void	free_matrix(char **mx);
@@ -94,5 +95,7 @@ void	sig_handler(int signo);
 void	new_tok_pipe(t_all *all, int *i);
 void	pipe_execution(t_all *all, t_piper *piper, int *cnt);
 void	args_initializer(t_all *all, t_piper *piper, int *i);
+int		is_var(t_all *all, char *str);
+void	write_var(t_all *all, char *str);
 
 #endif

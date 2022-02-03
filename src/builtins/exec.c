@@ -29,6 +29,6 @@ void	executioner(t_all *all)
 		}
 		exit(EXIT_SUCCESS);
 	}
-	waitpid(0, NULL, 0);	
+	waitpid(0, &all->status, 0);	
 	return ;
 }

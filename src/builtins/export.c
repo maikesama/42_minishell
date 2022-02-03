@@ -59,4 +59,5 @@ void	export_var(t_all *all)
 		return ;
 	new_env(all, all->env_var[i]);
 	free(str);
+	all->status = 0;
 }
