@@ -12,36 +12,40 @@
 
 #include "./../../headers/main.h"
 
+void	pid_status()
+{
+	pid_t id;
+
+	id = getpid();
+	ft_printf("%d: command not found\n", id);
+}
+
 void	read_cmd(t_all *all)
 {
-	if (equal_count(all))
-		save_env_var(all);
-	else if (all->ops->pipe)
+	if (all->ops->pipe)
 		pipex(all);
+	else if (!ft_strncmp(all->tok[0], "$?", ft_strlen(all->tok[0])))
+		ft_printf("%d: command not found\n", all->status);
+	else if (!ft_strncmp(all->tok[0], "$$", ft_strlen(all->tok[0])))
+		pid_status();
+	else if (!ft_strncmp(all->tok[0], "export", ft_strlen(all->tok[0])))
+		export_var(all);
+	else if (equal_count(all))
+		save_env_var(all);
 	else if (!ft_strncmp(all->tok[0], "cd", ft_strlen(all->tok[0])))
-		change_directory(all->tok[1], all);
+		change_directory(all);
 	else if (!ft_strncmp(all->tok[0], "pwd", ft_strlen(all->tok[0])))
 		print_dir(all);
 	else if (!ft_strncmp(all->tok[0], "env", ft_strlen(all->tok[0])))
 		print_env(all);
 	else if (!ft_strncmp(all->tok[0], "exit", ft_strlen(all->tok[0])))
 		ft_exit(all);
-	else if (!ft_strncmp(all->tok[0], "export", ft_strlen(all->tok[0])))
-		export_var(all);
 	else if (!ft_strncmp(all->tok[0], "unset", ft_strlen(all->tok[0])))
 		unset_var(all);
 	else if (!ft_strncmp(all->tok[0], "echo", ft_strlen(all->tok[0])))
 		echo(all);
 	else
 		executioner(all);
-}
-
-void	echof(t_all *all)
-{
-		if (all->echoflag == 0)
-			printf("\n");
-		if (all->echoflag == 1)
-			all->echoflag = 0;
 }
 
 int	parser(t_all *all)
@@ -63,7 +67,6 @@ int	parser(t_all *all)
 	read_cmd(all);
 	if (all->tok[0] && all->tok)
 		free_matrix(all->tok);
-	echof(all);
 	reset_in_out(all);
 	return (1);
 }

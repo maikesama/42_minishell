@@ -14,20 +14,29 @@ int	line_counter(char **env)
 void	get_path(char *path_line, t_all *all)
 {
 	int		i;
-	char	*tmp;
+	char	**tmp;
+	char	*str;
 
 	i = 0;
-	tmp = ft_substr(path_line, 5, ft_strlen(path_line) - 5);
-	all->env_path = ft_split(tmp, ':');
-	free(tmp);
+	str = ft_substr(path_line, 5, ft_strlen(path_line) - 5);
+	all->env_path = ft_split(str, ':');
+	free(str);
+	tmp = ft_calloc(line_counter(all->env_path) + 1, sizeof(*tmp));
 	while (all->env_path[i])
 	{
-		tmp = ft_strjoin(all->env_path[i], "/");
-		ft_realloc(all->env_path[i], ft_strlen(tmp) + 1);
-		ft_memcpy(all->env_path[i], tmp, ft_strlen(tmp));
-		free(tmp);
+		tmp[i] = ft_strjoin(all->env_path[i], "/");
 		i++;
 	}
+	free_matrix(all->env_path);
+	i = 0;
+	all->env_path = ft_calloc(line_counter(tmp) + 1, sizeof(*all->env_path));
+	while (tmp[i])
+	{
+		all->env_path[i] = ft_calloc(ft_strlen(tmp[i]) + 1, 1);
+		ft_memcpy(all->env_path[i], tmp[i], ft_strlen(tmp[i]));
+		i++;
+	}
+	free_matrix(tmp);
 }
 
 void	print_env(t_all *all)

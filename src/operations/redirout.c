@@ -71,7 +71,8 @@ void	redirect(t_all *all)
 				return ;
 			write_on_opt(all, &i);
 			all->ops->arrow++;
-			i--;
+			if (i > 0)
+				i--;
 		}
 		if (all->tok[i][0] == '<')
 		{

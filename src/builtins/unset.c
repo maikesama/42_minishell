@@ -95,4 +95,5 @@ void	unset_var(t_all *all)
 	unset_var_var(all);
 	if (check_env_var_existence(all))
 		unset_env_var(all);
+	all->status = 0;
 }
