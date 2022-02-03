@@ -97,5 +97,6 @@ void	pipe_execution(t_all *all, t_piper *piper, int *cnt);
 void	args_initializer(t_all *all, t_piper *piper, int *i);
 int		is_var(t_all *all, char *str);
 void	write_var(t_all *all, char *str);
+void	ft_wait(t_all *all, pid_t id);
 
 #endif

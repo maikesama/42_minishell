@@ -17,7 +17,7 @@ void	pid_status()
 	pid_t id;
 
 	id = getpid();
-	ft_printf("%d: command not found", id);
+	ft_printf("%d: command not found\n", id);
 }
 
 void	read_cmd(t_all *all)
@@ -25,7 +25,7 @@ void	read_cmd(t_all *all)
 	if (all->ops->pipe)
 		pipex(all);
 	else if (!ft_strncmp(all->tok[0], "$?", ft_strlen(all->tok[0])))
-		ft_printf("%d: command not found", all->status);
+		ft_printf("%d: command not found\n", all->status);
 	else if (!ft_strncmp(all->tok[0], "$$", ft_strlen(all->tok[0])))
 		pid_status();
 	else if (!ft_strncmp(all->tok[0], "export", ft_strlen(all->tok[0])))

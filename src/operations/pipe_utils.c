@@ -119,7 +119,7 @@ void	pipe_execution(t_all *all, t_piper *piper, int *cnt)
 	else
 	{
 		parent(piper, all, cnt);
-		waitpid(id, &all->status, 0);
+		ft_wait(all, id);
 	}
 	return ;
 }

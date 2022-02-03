@@ -62,8 +62,8 @@ int	valid_history(t_all *all)
 
 void	take_input(t_all *all)
 {
-	// signal(SIGINT, sig_handler);
-	// signal(SIGQUIT, SIG_IGN);
+	signal(SIGINT, sig_handler);
+	signal(SIGQUIT, SIG_IGN);
 	if (all->input)
 		free(all->input);
 	all->input = readline( RL_S"\e[95m"RL_E "MiniShell>>> " RL_S"\e[0m"RL_E );
