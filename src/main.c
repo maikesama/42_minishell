@@ -26,12 +26,12 @@ int	exit_error(t_all *all)
 				ft_printf("exit: too many arguments\n");
 				return (1);
 			}	
-			while(all->tok[1][i])
+			while (all->tok[1][i])
 			{
-				
 				if (!ft_isdigit(all->tok[1][i]))
 				{
-					ft_printf("exit: %s: numeric argument required\n", all->tok[1]);
+					ft_printf("exit: %s: numeric argument required\n",
+						all->tok[1]);
 					return (1);
 				}
 				i++;
@@ -47,9 +47,7 @@ void	ft_exit(t_all *all)
 	if (all->input == NULL)
 	{
 		if (all->mini_env)
-		free_matrix(all->mini_env);
-		// if (all->env_path)
-		// 	free_matrix(all->env_path);
+			free_matrix(all->mini_env); // if (all->env_path){free_matrix(all->env_path);}
 		if (all->env_var)
 			free_matrix(all->env_var);
 		exit(EXIT_SUCCESS);
@@ -57,7 +55,7 @@ void	ft_exit(t_all *all)
 	if (exit_error(all) == 0)
 	{
 		if (all->mini_env)
-		free_matrix(all->mini_env);
+			free_matrix(all->mini_env);
 		if (all->env_path)
 			free_matrix(all->env_path);
 		if (all->env_var)
@@ -104,7 +102,8 @@ void	take_input(t_all *all)
 	signal(SIGQUIT, SIG_IGN);
 	if (all->input)
 		free(all->input);
-	all->input = readline( RL_S"\e[95m"RL_E "MiniShell>>> " RL_S"\e[0m"RL_E );
+	all->input = readline(RL_S"\e[95m"RL_E "MiniShell>>> "
+		RL_S"\e[0m"RL_E);
 	if (all->input == NULL)
 		ft_exit(all);
 	if (valid_history(all))
@@ -134,7 +133,6 @@ void	take_path(t_all *all)
 	}
 	if (ret == 0)
 		all->env_path = ft_calloc(1, sizeof(all->env_path));
-	
 }
 
 int	main(int ac, char **av, char **env)

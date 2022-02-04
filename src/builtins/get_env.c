@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_env.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pceccoli <pceccoli@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/04 19:45:29 by pceccoli          #+#    #+#             */
+/*   Updated: 2022/02/04 19:47:29 by pceccoli         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./../../headers/main.h"
 
 int	line_counter(char **env)
@@ -11,6 +23,7 @@ int	line_counter(char **env)
 		i++;
 	return (i);
 }
+
 void	get_path(char *path_line, t_all *all)
 {
 	int		i;

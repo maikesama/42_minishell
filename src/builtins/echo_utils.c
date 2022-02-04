@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   echo_utils.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pceccoli <pceccoli@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/04 19:45:20 by pceccoli          #+#    #+#             */
+/*   Updated: 2022/02/04 19:45:24 by pceccoli         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./../../headers/main.h"
 
 int	try_to_find_on_var(t_all *all, char *str)
@@ -29,11 +41,12 @@ int	is_var(t_all *all, char *str)
 	if (all->env_var && all->env_var[0])
 	{
 		if (try_to_find_on_var(all, str) == 1)
-			return (1);	
+			return (1);
 	}
 	while (i < line_counter(all->mini_env))
 	{
-		while (all->mini_env[i][j] != '=' && all->mini_env[i][j] != 0 && all->mini_env[i] && all->mini_env)
+		while (all->mini_env[i][j] != '=' && all->mini_env[i][j] != 0
+			&& all->mini_env[i] && all->mini_env)
 				j++;
 		if (!ft_strncmp(str, all->mini_env[i], j))
 			return (1);

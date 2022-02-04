@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cd.c                                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pceccoli <pceccoli@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/04 19:40:50 by pceccoli          #+#    #+#             */
+/*   Updated: 2022/02/04 19:41:33 by pceccoli         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./../../headers/main.h"
 
 void	coming_home(char *path, t_all *all)
@@ -9,7 +21,8 @@ void	coming_home(char *path, t_all *all)
 	while (all->mini_env[i])
 	{
 		if (!ft_strncmp("HOME=", all->mini_env[i], 5))
-			path = ft_substr(all->mini_env[i], 5, ft_strlen(all->mini_env[i]) - 5);
+			path = ft_substr(all->mini_env[i], 5,
+				ft_strlen(all->mini_env[i]) - 5);
 		i++;
 	}
 }

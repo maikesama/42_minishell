@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   save_env_var.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pceccoli <pceccoli@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/04 19:45:38 by pceccoli          #+#    #+#             */
+/*   Updated: 2022/02/04 19:46:53 by pceccoli         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./../../headers/main.h"
 
 int	equal_count(t_all *all, int line)
 {
 	int	i;
-
 
 	i = 0;
 	while (all->tok[line][i])
@@ -34,7 +45,7 @@ int	change_var(t_all *all)
 	int		i;
 	int		j;
 	char	*new;
-	
+
 	i = check_existence_env(all);
 	j = check_existence_var(all);
 	if (j == -1)
@@ -56,7 +67,7 @@ void	save_env_var(t_all *all)
 {
 	char	**tmp;
 	int		i;
-	
+
 	i = 0;
 	if (line_counter(all->tok) != 1)
 		return ;
