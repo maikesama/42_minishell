@@ -1,14 +1,14 @@
 #include "./../../headers/main.h"
 
-int	equal_count(t_all *all)
+int	equal_count(t_all *all, int line)
 {
 	int	i;
 
 
 	i = 0;
-	while (all->tok[0][i])
+	while (all->tok[line][i])
 	{
-		if (all->tok[0][i] == '=')
+		if (all->tok[line][i] == '=')
 			return (1);
 		i++;
 	}
