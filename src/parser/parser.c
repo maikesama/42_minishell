@@ -65,8 +65,10 @@ int	parser(t_all *all)
 		set_in_out(all);
 	}
 	read_cmd(all);
-	if (all->tok[0] && all->tok)
+	if (all->tok && all->tok[0])
 		free_matrix(all->tok);
 	reset_in_out(all);
+	if (all->env_path && all->env_path[0])
+		free_matrix(all->env_path);
 	return (1);
 }

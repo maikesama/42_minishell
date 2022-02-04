@@ -89,9 +89,10 @@ void	input_tok(t_all *all)
 	if (!all->tok)
 		exit(EXIT_FAILURE);
 	j = 0;
-	while (all->input[i] && all->input)
+	while (all->input && all->input[i])
 	{
 		tokenizer(all, &j, &i, &x);
-		i++;
+		if (all->input[i])
+			i++;
 	}
 }

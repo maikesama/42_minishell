@@ -73,7 +73,8 @@ int	check_special(t_all *all, char *str)
 			flag1 *= -1;
 		if (str[i] == '\'')
 			flag2 *= -1;
-		i++;
+		if (str[i])
+			i++;
 	}
 	return (1);
 }

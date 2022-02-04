@@ -5,11 +5,15 @@ int	check_var_existence(t_all *all)
 	int	i;
 
 	i = 0;
-	if (!all->env_var)
-		return (0);
-	while (all->env_var[i])
+	while (all->env_var && all->env_var[i])
 	{
 		if (!ft_strncmp(all->tok[1], all->env_var[i], ft_strlen(all->tok[1])))
+			return (1);
+		i++;
+	}
+	while (all->mini_env && all->mini_env[i])
+	{
+		if (!ft_strncmp(all->tok[1], all->mini_env[i], ft_strlen(all->tok[1])))
 			return (1);
 		i++;
 	}

@@ -101,6 +101,7 @@ void	pipe_execution(t_all *all, t_piper *piper, int *cnt)
 {
 	pid_t	id;
 
+	signal(SIGINT, SIG_IGN);
 	id = fork();
 	if (id == -1)
 	{
@@ -109,6 +110,8 @@ void	pipe_execution(t_all *all, t_piper *piper, int *cnt)
 	}
 	if (id == 0)
 	{
+		signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
 		if (*cnt == 0)
 			first_child(piper, all);
 		else if (*cnt != 0 && *cnt != all->ops->pipe)

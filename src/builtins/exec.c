@@ -37,6 +37,7 @@ void	executioner(t_all *all)
 	pid_t	id;
 
 	i = 0;
+	signal(SIGINT, SIG_IGN);
 	id = fork();
 	if (id == -1)
 	{
@@ -45,7 +46,14 @@ void	executioner(t_all *all)
 	}
 	if (id == 0)
 	{
-		while (all->env_path[i])
+		signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
+		if (!all->env_path || !all->env_path[0])
+		{
+			ft_printf("%s: No such file or directory\n", all->tok[0]);
+			exit(EXIT_FAILURE);
+		}
+		while (all->env_path && all->env_path[i])
 		{
 			all->cmd = ft_strjoin(all->env_path[i], all->tok[0]);
 			err = execve(all->cmd, all->tok, all->mini_env);

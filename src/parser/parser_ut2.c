@@ -104,7 +104,7 @@ void	new_input(t_all *all)
 	tmp = ft_calloc(ft_strlen(all->input) + i + 1, 1);
 	copy_spc(all, tmp);
 	all->input = ft_realloc(all->input, ft_strlen(tmp) + 1);
-	all->input[ft_strlen(tmp) + 1] = 0;
+	all->input[ft_strlen(tmp)] = 0;
 	j = 0;
 	while (tmp[j])
 	{
