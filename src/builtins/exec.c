@@ -37,6 +37,7 @@ void	executioner(t_all *all)
 	pid_t	id;
 
 	i = 0;
+	signal(SIGINT, SIG_IGN)
 	id = fork();
 	if (id == -1)
 	{
@@ -45,6 +46,8 @@ void	executioner(t_all *all)
 	}
 	if (id == 0)
 	{
+		signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
 		while (all->env_path[i])
 		{
 			all->cmd = ft_strjoin(all->env_path[i], all->tok[0]);
