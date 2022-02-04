@@ -48,8 +48,8 @@ void	ft_exit(t_all *all)
 	{
 		if (all->mini_env)
 		free_matrix(all->mini_env);
-		if (all->env_path)
-			free_matrix(all->env_path);
+		// if (all->env_path)
+		// 	free_matrix(all->env_path);
 		if (all->env_var)
 			free_matrix(all->env_var);
 		exit(EXIT_SUCCESS);
@@ -116,6 +116,27 @@ void	take_input(t_all *all)
 		return ;
 }
 
+void	take_path(t_all *all)
+{
+	int	i;
+	int	ret;
+
+	ret = 0;
+	i = 0;
+	while (all->mini_env && all->mini_env[i])
+	{
+		if (!ft_strncmp(all->mini_env[i], "PATH=", 5))
+		{
+			ret = 1;
+			get_path(all->mini_env[i], all);
+		}
+		i++;
+	}
+	if (ret == 0)
+		all->env_path = ft_calloc(1, sizeof(all->env_path));
+	
+}
+
 int	main(int ac, char **av, char **env)
 {
 	t_all	all;
@@ -131,6 +152,7 @@ int	main(int ac, char **av, char **env)
 	while (1)
 	{
 		take_input(&all);
+		take_path(&all);
 		parser(&all);
 		if (all.input)
 			free(all.input);

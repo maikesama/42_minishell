@@ -59,8 +59,6 @@ void	get_env(t_all *all, char **env)
 	all->mini_env = ft_calloc(line_counter(env) + 1, sizeof(*all->mini_env));
 	while (env[i])
 	{
-		if (!ft_strncmp(env[i], "PATH=", 5))
-			get_path(env[i], all);
 		all->mini_env[i] = ft_calloc(ft_strlen(env[i]) + 1, 1);
 		ft_memcpy(all->mini_env[i], env[i], ft_strlen(env[i]));
 		i++;

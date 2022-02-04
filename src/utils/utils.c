@@ -5,12 +5,17 @@ void	free_matrix(char **mx)
 	int	i;
 
 	i = 0;
-	while (mx[i])
+	if (!mx)
+		return ;
+	else
 	{
-		free(mx[i]);
-		i++;
+		while (mx && mx[i])
+		{
+			free(mx[i]);
+			i++;
+		}
+		free(mx);
 	}
-	free(mx);
 }
 
 int	check_existence_env(t_all *all)
