@@ -6,7 +6,7 @@
 /*   By: pceccoli <pceccoli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 19:45:00 by pceccoli          #+#    #+#             */
-/*   Updated: 2022/02/04 19:53:12 by pceccoli         ###   ########.fr       */
+/*   Updated: 2022/02/05 20:18:01 by pceccoli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	ft_wait(t_all *all, pid_t id)
 		all->status = WEXITSTATUS(status);
 }
 
+//funzione che cerca localmente 
+
 void	executioner_figlio(t_all *all, int i, int err)
 {
 	signal(SIGINT, SIG_DFL);
@@ -49,8 +51,11 @@ void	executioner_figlio(t_all *all, int i, int err)
 		ft_printf("%s: No such file or directory\n", all->tok[0]);
 		exit(EXIT_FAILURE);
 	}
+	all->cmd = all->tok[0]; // ./cmd a b c 
+	execve(all->cmd, all->tok, all->mini_env);
 	while (all->env_path && all->env_path[i])
 	{
+		all->cmd = all->tok[0];
 		all->cmd = ft_strjoin(all->env_path[i], all->tok[0]);
 		err = execve(all->cmd, all->tok, all->mini_env);
 		free(all->cmd);

@@ -6,7 +6,7 @@
 /*   By: pceccoli <pceccoli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 19:41:55 by pceccoli          #+#    #+#             */
-/*   Updated: 2022/02/04 19:43:20 by pceccoli         ###   ########.fr       */
+/*   Updated: 2022/02/05 19:13:05 by pceccoli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	echo_var(t_all *all, int *i, int *j)
 	free(str);
 }
 
-void    echo_just_for_norm(t_all *all, int i, int *j)
+void	echo_just_for_norm(t_all *all, int i, int *j)
 {
 	while (all->tok[i][*j])
 	{
@@ -69,7 +69,8 @@ void	skip_flags(t_all *all, int *i)
 
 	f = 0;
 	j = 2;
-	while (all->tok[*i] && all->tok[*i][0] && !ft_strncmp(all->tok[*i], "-n", 2))
+	while (all->tok[*i] && all->tok[*i][0] &&
+		!ft_strncmp(all->tok[*i], "-n", 2))
 	{
 		while (all->tok[*i][j])
 		{
