@@ -59,8 +59,6 @@ void	check_export(t_all *all, char *str, char *tmp)
 		if (!ft_strncmp(all->mini_env[i], str, j))
 		{
 			free(all->mini_env[i]);
-			// all->mini_env[i] = ft_calloc(ft_strlen(tmp) + 1, 1);
-			// ft_memcpy(all->mini_env[i], tmp, ft_strlen(tmp));
 			all->mini_env[i] = ft_strjoin(tmp, "");
 			return ;
 		}
@@ -70,7 +68,7 @@ void	check_export(t_all *all, char *str, char *tmp)
 	new_env(all, tmp);
 }
 
-void	export_var(t_all *all)
+void	export_var(t_all *all, char **mx)
 {
 	int		i;
 	int		j;
@@ -78,7 +76,7 @@ void	export_var(t_all *all)
 	char	*tmp;
 
 	i = 0;
-	if (!all->tok[1])
+	if (!mx[1])
 	{
 		while (all->mini_env[i])
 		{
@@ -87,12 +85,12 @@ void	export_var(t_all *all)
 		}
 		return ;
 	}
-	while (all->tok[1][i] != '=' && all->tok[1][i])
+	while (mx[1][i] != '=' && mx[1][i])
 		i++;
 	str = ft_calloc(i + 1, 1);
-	ft_memcpy(str, all->tok[1], i);
-	tmp = ft_calloc(ft_strlen(all->tok[1]) + 1, 1);
-	ft_memcpy(tmp, all->tok[1], ft_strlen(all->tok[1]));
+	ft_memcpy(str, mx[1], i);
+	tmp = ft_calloc(ft_strlen(mx[1]) + 1, 1);
+	ft_memcpy(tmp, mx[1], ft_strlen(mx[1]));
 	if (equal_count(all, 1))
 	{
 		check_export(all, str, tmp);
@@ -101,7 +99,8 @@ void	export_var(t_all *all)
 		return ;
 	}
 	i = 0;
-	while (ft_strncmp(str, all->env_var[i], ft_strlen(str)))
+	while (all->env_var && all->env_var[i]
+		&& ft_strncmp(str, all->env_var[i], ft_strlen(str)))
 	{
 		if (ft_strncmp(str, all->env_var[i], ft_strlen(str)))
 			j = 0;
@@ -111,7 +110,8 @@ void	export_var(t_all *all)
 	}
 	if (j == 0)
 		return ;
-	new_env(all, all->env_var[i]);
+	if (all->env_var && all->env_var[i])
+		new_env(all, all->env_var[i]);
 	free(str);
 	free(tmp);
 	all->status = 0;

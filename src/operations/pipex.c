@@ -31,16 +31,16 @@ void	free_fds(int **fd, int lim)
 	free(fd);
 }
 
-void	fd_allocation(t_piper *piper, t_all *all)
+void	fd_allocation(t_all *all)
 {
 	int	i;
 
 	i = 0;
-	piper->fd = malloc((all->ops->pipe + 2) * sizeof(int	*));
+	all->fd = malloc((all->ops->pipe + 2) * sizeof(int	*));
 	while(i <= all->ops->pipe)
 	{
-		piper->fd[i] = (int *)malloc(2 * sizeof(int));
-		pipe(piper->fd[i]);
+		all->fd[i] = (int *)malloc(2 * sizeof(int));
+		pipe(all->fd[i]);
 		i++;
 	}
 }
@@ -48,24 +48,25 @@ void	fd_allocation(t_piper *piper, t_all *all)
 void	pipex(t_all *all)
 {
 	int	i;
-	int	cnt;
+	int	j;
 
 	i = 0;
-	cnt = 0;
-	t_piper	piper;
-	fd_allocation(&piper, all);
-	while (all->tok[i] != 0 && all->tok[i][0] != 0)
+	j = 0;
+	t_piper	*piper;
+
+	piper = malloc((all->ops->pipe + 2) * sizeof(*piper));
+	fd_allocation(all);
+	while (all->tok[i] != 0 && all->tok[i][0] != 0 && j <= all->ops->pipe)
 	{
-		piper.cmd = ft_calloc(ft_strlen(all->tok[i]) + 1, 1);
-		ft_memcpy(piper.cmd, all->tok[i], ft_strlen(all->tok[i]));
-		args_initializer(all, &piper, &i);
-		pipe_execution(all, &piper, &cnt);
-		free_piper(&piper, all);
+		piper[j].cmd = ft_calloc(ft_strlen(all->tok[i]) + 1, 1);
+		ft_memcpy(piper[j].cmd, all->tok[i], ft_strlen(all->tok[i]));
+		args_initializer(all, piper, &i, j);
 		if (!all->tok[i])
 			break ;
 		if (all->tok[i][0] == '|')
 			i += 1;
-		cnt++;
+		j++;
 	}
-	free_fds(piper.fd, all->ops->pipe);
+	pipe_execution(all, piper);
+	free_fds(all->fd, all->ops->pipe);
 }

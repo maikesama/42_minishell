@@ -12,31 +12,31 @@
 
 #include "./../headers/main.h"
 
-int	exit_error(t_all *all)
+int	exit_error(t_all *all, char **mx)
 {
 	int	i;
 
 	i = 0;
-	if (all->tok && all->tok[0][0])
+	if (mx && mx[0][0])
 	{
-		if (all->tok && all->tok[1] && all->tok[1][0])
+		if (mx && mx[1] && mx[1][0])
 		{
-			if (all->tok[2])
+			if (mx[2])
 			{
 				ft_printf("exit: too many arguments\n");
 				return (1);
 			}	
-			while (all->tok[1][i])
+			while (mx[1][i])
 			{
-				if (!ft_isdigit(all->tok[1][i]))
+				if (!ft_isdigit(mx[1][i]))
 				{
 					ft_printf("exit: %s: numeric argument required\n",
-						all->tok[1]);
+						mx[1]);
 					return (1);
 				}
 				i++;
 			}
-			all->status = ft_atoi(all->tok[1]);
+			all->status = ft_atoi(mx[1]);
 		}
 	}
 	return (0);
@@ -52,7 +52,7 @@ void	ft_exit(t_all *all)
 			free_matrix(all->env_var);
 		exit(EXIT_SUCCESS);
 	}
-	if (exit_error(all) == 0)
+	if (exit_error(all, all->tok) == 0)
 	{
 		if (all->mini_env)
 			free_matrix(all->mini_env);

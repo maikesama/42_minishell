@@ -63,3 +63,29 @@ int	check_existence_var(t_all *all)
 	free(str);
 	return (-1);
 }
+
+void	ft_wait_pipe(t_all *all, pid_t *id)
+{
+	int	wexit;
+	int	status;
+	int	i;
+
+	i = 0;
+	while (i <= all->ops->pipe)
+	{
+
+		wexit = waitpid(id[i], &status, WUNTRACED);
+		if (wexit == -1)
+			perror("waitpid");
+		if (WIFSTOPPED(status))
+			all->status = WSTOPSIG(status) + 128;
+		if (WIFSIGNALED(status))
+		{
+			ft_printf("\n");
+			all->status = WTERMSIG(status) + 128;
+		}
+		if (WIFEXITED(status))
+			all->status = WEXITSTATUS(status);
+		i++;
+	}
+}
