@@ -35,7 +35,6 @@ typedef struct s_piper
 {
 	char	*cmd;
 	char	**args;
-	int		**fd;
 }				t_piper;
 
 typedef struct s_all
@@ -57,6 +56,7 @@ typedef struct s_all
 	int		saved_stdout;
 	int		saved_stdin;
 	int		status;
+	int		**fd;
 }				t_all;
 
 void	take_input(t_all *all);
@@ -77,10 +77,9 @@ int		equal_count(t_all *all, int line);
 void	save_env_var(t_all *all);
 int		check_existence_var(t_all *all);
 int		check_existence_env(t_all *all);
-void	export_var(t_all *all);
 void	re_copy_var(t_all *all, char **tmp);
 void	re_copy_env(t_all *all, char **tmp);
-void	unset_var(t_all *all);
+void	unset_var(t_all *all, char **mx);
 void	echo(t_all *all);
 int		check_special(t_all *all, char *str);
 void	pipex(t_all *all);
@@ -94,11 +93,14 @@ void	write_on_opt(t_all *all, int *i);
 void	rl_replace_line(const char *text, int clear_undo);
 void	sig_handler(int signo);
 void	new_tok_pipe(t_all *all, int *i);
-void	pipe_execution(t_all *all, t_piper *piper, int *cnt);
-void	args_initializer(t_all *all, t_piper *piper, int *i);
+void	pipe_execution(t_all *all, t_piper *piper);
+void	args_initializer(t_all *all, t_piper *piper, int *i, int cnt);
 int		is_var(t_all *all, char *str);
 void	write_var(t_all *all, char *str);
 void	ft_wait(t_all *all, pid_t id);
 void	get_path(char *path_line, t_all *all);
+void	ft_wait_pipe(t_all *all, pid_t *id);
+void	export_var(t_all *all, char **mx);
+int		exit_error(t_all *all, char **mx);
 
 #endif

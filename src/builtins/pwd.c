@@ -17,7 +17,7 @@ void	print_dir(t_all *all)
 	all->dir = getcwd(all->dir, 0);
 	if (all->dir == NULL)
 		return ;
-	ft_printf("%s", all->dir);
+	ft_printf("%s\n", all->dir);
 	all->dir = NULL;
 	all->status = 0;
 }

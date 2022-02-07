@@ -29,7 +29,7 @@ void	read_cmd(t_all *all)
 	else if (!ft_strncmp(all->tok[0], "$$", ft_strlen(all->tok[0])))
 		pid_status();
 	else if (!ft_strncmp(all->tok[0], "export", ft_strlen(all->tok[0])))
-		export_var(all);
+		export_var(all, all->tok);
 	else if (equal_count(all, 0))
 		save_env_var(all);
 	else if (!ft_strncmp(all->tok[0], "cd", ft_strlen(all->tok[0])))
@@ -41,7 +41,7 @@ void	read_cmd(t_all *all)
 	else if (!ft_strncmp(all->tok[0], "exit", ft_strlen(all->tok[0])))
 		ft_exit(all);
 	else if (!ft_strncmp(all->tok[0], "unset", ft_strlen(all->tok[0])))
-		unset_var(all);
+		unset_var(all, all->tok);
 	else if (!ft_strncmp(all->tok[0], "echo", ft_strlen(all->tok[0])))
 		echo(all);
 	else
