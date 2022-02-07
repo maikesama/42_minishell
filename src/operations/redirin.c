@@ -51,22 +51,23 @@ void	dworra(t_all *all, int *i)
 	}
 }
 
-void	input(t_all *all, int *i)
+int	input(t_all *all, int *i)
 {
 	all->fd_in = -1;
 	close(all->fd_in);
 	if (all->tok[*i][1] == '<')
 	{
 		dworra(all, i);
-		return ;
+		return (1);
 	}
 	all->fd_in = open(all->tok[*i + 1], O_RDONLY, 0777);
 	if (all->fd_in == -1)
 	{
 		perror(all->tok[*i + 1]);
-		return ;
+		return (0);
 	}
 	new_tok(all, i);
+	return (1);
 }
 
 void	reset_in_out(t_all *all)

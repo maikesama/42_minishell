@@ -69,7 +69,8 @@ void	redirect(t_all *all)
 		{
 			if (all->tok[i][1] != 0 && all->tok[i][1] != '>')
 				return ;
-			write_on_opt(all, &i);
+			if (all->tok[i + 1])
+				write_on_opt(all, &i);
 			all->ops->arrow++;
 			if (i > 0)
 				i--;
@@ -79,11 +80,16 @@ void	redirect(t_all *all)
 			if (all->tok[i][1] != 0 && all->tok[i][1] != '<')
 				return ;
 			if (all->tok[i + 1])
-				input(all, &i);
-			all->ops->worra++;
-			i--;
+			{
+				if (input(all, &i))
+				{
+					all->ops->worra++;
+					i--;
+				}
+			}
 		}
-		i++;
+		if (all->tok[i])
+			i++;
 	}
 }
 
