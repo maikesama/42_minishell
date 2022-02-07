@@ -51,10 +51,8 @@ void	cd_error(char *str)
 
 void	change_directory(t_all *all)
 {
-	int		i;
 	char	*str;
 
-	i = 0;
 	if (!all->tok[1] || !ft_strncmp(all->tok[1], "˜", ft_strlen(all->tok[1])))
 	{
 		str = malloc(1);

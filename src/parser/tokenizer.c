@@ -77,10 +77,8 @@ void	input_tok(t_all *all)
 {
 	int	j;
 	int	i;
-	int	len;
 	int	x;
 
-	len = 0;
 	i = 0;
 	x = 0;
 	if (!all->input)

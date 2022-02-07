@@ -70,7 +70,9 @@ void	copy_spc(t_all *all, char *tmp)
 
 	i = 0;
 	j = 0;
-	while (all->input[i])
+	if (!all->input)
+		return ;
+	while (all->input && all->input[i])
 	{
 		copy_erase(all, &i, tmp, &j);
 		if (!is_spec_char(all->input[i]))
@@ -81,7 +83,8 @@ void	copy_spc(t_all *all, char *tmp)
 				copy_spc_ut(all, &tmp, &i, &j);
 			i++;
 		}
-		tmp[j++] = all->input[i++];
+		if (all->input[i])
+			tmp[j++] = all->input[i++];
 	}
 }
 

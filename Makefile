@@ -11,7 +11,7 @@ SOURCES = $(shell find $(SRCDIR) -name "*.c")
 
 OBJECTS = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SOURCES))
 
-CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 
 LIBS = -L./lib/libft -L./lib/ft_printf -lft -lftprintf -L /Users/$(USER)/.brew/opt/readline/lib -I /Users/$(USER)/.brew/opt/readline/include -lreadline
 

@@ -47,7 +47,8 @@ void	ft_exit(t_all *all)
 	if (all->input == NULL)
 	{
 		if (all->mini_env)
-			free_matrix(all->mini_env); // if (all->env_path){free_matrix(all->env_path);}
+			free_matrix(all->mini_env);
+		// if (all->env_path){free_matrix(all->env_path);}
 		if (all->env_var)
 			free_matrix(all->env_var);
 		exit(EXIT_SUCCESS);
@@ -140,6 +141,7 @@ int	main(int ac, char **av, char **env)
 	t_all	all;
 	t_ops	ops;
 
+	//rl_catch_signals = 0;
 	ft_bzero(&all, sizeof(all));
 	ft_bzero(&ops, sizeof(ops));
 	free(all.input);

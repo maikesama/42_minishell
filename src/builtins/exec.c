@@ -23,9 +23,7 @@ void	ft_wait(t_all *all, pid_t id)
 {
 	int	wexit;
 	int	status;
-	int	newline;
 
-	newline = 0;
 	wexit = waitpid(id, &status, WUNTRACED);
 	if (wexit == -1)
 		perror("waitpid");
