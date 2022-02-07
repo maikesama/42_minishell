@@ -1,11 +1,23 @@
-#include "./../../headers/main.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser_ut3.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pceccoli <pceccoli@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/07 11:55:12 by pceccoli          #+#    #+#             */
+/*   Updated: 2022/02/07 11:55:14 by pceccoli         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include	"./../../headers/main.h"
 
 int	space_eraser(char *str)
 {
-	int flag1;
-	int flag2;
-	int i;
-	int j;
+	int	flag1;
+	int	flag2;
+	int	i;
+	int	j;
 
 	flag1 = 1;
 	flag2 = 1;
