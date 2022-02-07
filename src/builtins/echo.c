@@ -40,7 +40,7 @@ void	echo_var(t_all *all, int *i, int *j)
 
 void	echo_just_for_norm(t_all *all, int i, int *j)
 {
-	while (all->tok[i][*j])
+	while (all->tok && all->tok[i] && all->tok[i][*j])
 	{
 		if (all->tok[i][*j] == '"' && all->flag1 == 1)
 		{
@@ -52,9 +52,16 @@ void	echo_just_for_norm(t_all *all, int i, int *j)
 			all->flag1 *= -1;
 			*j += 1;
 		}
-		if (all->tok[i][*j] == '$' && all->flag1 == 1)
+		if (!ft_strncmp(all->tok[i], "$?", ft_strlen(all->tok[i]))
+			&& all->flag1 == 1)
+		{
+			ft_printf("%d", all->status);
+			if (all->tok[i])
+				i++;
+		}
+		if (all->tok[i] && all->tok[i][*j] == '$' && all->flag1 == 1)
 			echo_var(all, &i, &*j);
-		if (all->tok[i][*j])
+		if (all->tok[i] && all->tok[i][*j])
 		{
 			write(1, &all->tok[i][*j], 1);
 			*j += 1;
