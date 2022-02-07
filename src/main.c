@@ -19,7 +19,7 @@ int	exit_error(t_all *all)
 	i = 0;
 	if (all->tok && all->tok[0][0])
 	{
-		if (all->tok[1][0])
+		if (all->tok && all->tok[1] && all->tok[1][0])
 		{
 			if (all->tok[2])
 			{
