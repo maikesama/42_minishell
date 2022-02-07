@@ -78,7 +78,8 @@ void	redirect(t_all *all)
 		{
 			if (all->tok[i][1] != 0 && all->tok[i][1] != '<')
 				return ;
-			input(all, &i);
+			if (all->tok[i + 1])
+				input(all, &i);
 			all->ops->worra++;
 			i--;
 		}

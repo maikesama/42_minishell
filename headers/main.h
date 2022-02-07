@@ -16,6 +16,8 @@
 # define RL_S "\1"
 # define RL_E "\2"
 
+# include <readline/readline.h>
+# include <readline/history.h>
 # include <errno.h>
 # include <fcntl.h>
 # include <signal.h>
@@ -28,8 +30,9 @@
 # include "./parser.h"
 # include "../lib/ft_printf/ft_printf.h"
 # include "../lib/libft/libft.h"
-# include "readline/readline.h"
-# include "readline/history.h"
+# include "/usr/local/opt/readline/include/readline/readline.h"
+
+// int rl_save_state (struct readline_state *sp);
 
 typedef struct s_piper
 {

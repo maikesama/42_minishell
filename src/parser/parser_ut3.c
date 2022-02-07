@@ -44,7 +44,7 @@ void	copy_erase(t_all *all, int *i, char *tmp, int *j)
 	if (all->input[*i] == '\'' && all->flag2 == 1)
 		all->flag1 *= -1;
 	if (all->input[*i] == ' ' && all->input[*i + 1] == ' '
-		&& all->flag1 == all->flag2 == 1)
+		&& all->flag1 == 1 && all->flag2 == 1)
 	{
 		tmp[*j] = all->input[*i];
 		*j += 1;

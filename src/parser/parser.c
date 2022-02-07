@@ -51,7 +51,11 @@ void	read_cmd(t_all *all)
 int	parser(t_all *all)
 {
 	if (!all->input || !all->input[0])
+	{
+		if (all->env_path)
+			free_matrix(all->env_path);
 		return (0);
+	}
 	if (!check_quotes(all->input) || !check_special(all, all->input))
 	{
 		ft_printf("Error. Wrong input.\n");
