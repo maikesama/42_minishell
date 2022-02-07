@@ -6,15 +6,15 @@
 /*   By: pceccoli <pceccoli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 15:00:00 by pceccoli          #+#    #+#             */
-/*   Updated: 2021/12/17 16:38:56 by pceccoli         ###   ########.fr       */
+/*   Updated: 2022/02/07 11:55:04 by pceccoli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../../headers/main.h"
 
-void	pid_status()
+void	pid_status(void)
 {
-	pid_t id;
+	pid_t	id;
 
 	id = getpid();
 	ft_printf("%d: command not found\n", id);

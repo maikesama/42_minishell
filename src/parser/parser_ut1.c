@@ -6,7 +6,7 @@
 /*   By: pceccoli <pceccoli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 14:28:15 by mpaci             #+#    #+#             */
-/*   Updated: 2021/12/17 16:11:09 by pceccoli         ###   ########.fr       */
+/*   Updated: 2022/02/07 11:53:57 by pceccoli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,6 @@ int	add_spaces(char *str, char spec_char)
 	{
 		if (str[i] == spec_char)
 			jeyer(str, i, &j, spec_char);
-
 		i++;
 	}
 	return (j);

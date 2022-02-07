@@ -6,7 +6,7 @@
 /*   By: pceccoli <pceccoli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 02:50:01 by pceccoli          #+#    #+#             */
-/*   Updated: 2022/02/05 19:12:18 by pceccoli         ###   ########.fr       */
+/*   Updated: 2022/02/07 11:52:51 by pceccoli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	new_tok(t_all *all, int *i);
 void	re_copy_tok(t_all *all, char **tmp);
 void	input(t_all *all, int *i);
 void	write_on_opt(t_all *all, int *i);
-void	rl_replace_line (const char *text, int clear_undo);
+void	rl_replace_line(const char *text, int clear_undo);
 void	sig_handler(int signo);
 void	new_tok_pipe(t_all *all, int *i);
 void	pipe_execution(t_all *all, t_piper *piper, int *cnt);
