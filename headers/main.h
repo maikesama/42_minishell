@@ -6,7 +6,7 @@
 /*   By: pceccoli <pceccoli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 02:50:01 by pceccoli          #+#    #+#             */
-/*   Updated: 2021/12/17 16:53:49 by pceccoli         ###   ########.fr       */
+/*   Updated: 2022/02/05 19:12:18 by pceccoli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	input_tok(t_all *all);
 void	copy_erase(t_all *all, int *i, char *tmp, int *j);
 void	get_env(t_all *all, char **env);
 void	change_directory(t_all *all);
+void	cd_error(char *str);
 void	print_env(t_all *all);
 int		line_counter(char **env);
 void	free_matrix(char **mx);

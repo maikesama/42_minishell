@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cd.c                                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pceccoli <pceccoli@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/04 19:40:50 by pceccoli          #+#    #+#             */
+/*   Updated: 2022/02/05 19:11:37 by pceccoli         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./../../headers/main.h"
 
 void	coming_home(char *path, t_all *all)
@@ -9,7 +21,8 @@ void	coming_home(char *path, t_all *all)
 	while (all->mini_env[i])
 	{
 		if (!ft_strncmp("HOME=", all->mini_env[i], 5))
-			path = ft_substr(all->mini_env[i], 5, ft_strlen(all->mini_env[i]) - 5);
+			path = ft_substr(all->mini_env[i], 5,
+					ft_strlen(all->mini_env[i]) - 5);
 		i++;
 	}
 }
@@ -30,6 +43,12 @@ void	change_pwd(t_all *all)
 	}
 }
 
+void	cd_error(char *str)
+{
+	perror(str);
+	return ;
+}
+
 void	change_directory(t_all *all)
 {
 	int		i;
@@ -41,19 +60,13 @@ void	change_directory(t_all *all)
 		str = malloc(1);
 		coming_home(str, all);
 		if (chdir((const char *)str) != 0)
-		{
-			perror(str);
-			return ;
-		}
+			cd_error(str);
 		free(str);
 	}
 	else
 	{
 		if (chdir((const char *)all->tok[1]) != 0)
-		{
-			perror(all->tok[1]);
-			return ;
-		}
+			cd_error(all->tok[1]);
 	}
 	all->dir = getcwd(all->dir, 0);
 	change_pwd(all);
