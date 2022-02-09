@@ -20,7 +20,7 @@ void	ft_exit(t_all *all)
 			free_matrix(all->mini_env);
 		if (all->env_var)
 			free_matrix(all->env_var);
-		exit(EXIT_SUCCESS);
+		exit(all->status);
 	}
 	if (exit_error(all, all->tok) == 0)
 	{
@@ -30,7 +30,7 @@ void	ft_exit(t_all *all)
 			free_matrix(all->env_path);
 		if (all->env_var)
 			free_matrix(all->env_var);
-		exit(EXIT_SUCCESS);
+		exit(all->status);
 	}
 }
 
