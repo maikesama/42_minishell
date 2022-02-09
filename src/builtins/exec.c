@@ -49,7 +49,7 @@ void	executioner_figlio(t_all *all, int i, int err)
 		ft_printf("%s: No such file or directory\n", all->tok[0]);
 		exit(EXIT_FAILURE);
 	}
-	all->cmd = all->tok[0]; // ./cmd a b c 
+	all->cmd = all->tok[0];
 	execve(all->cmd, all->tok, all->mini_env);
 	while (all->env_path && all->env_path[i])
 	{

@@ -68,10 +68,36 @@ void	check_export(t_all *all, char *str, char *tmp)
 	new_env(all, tmp);
 }
 
+void	ut_export(t_all *all, char *str, char *tmp)
+{
+	int	i;
+	int	j;
+
+	if (equal_count(all, 1))
+	{
+		check_export(all, str, tmp);
+		free(str);
+		free(tmp);
+		return ;
+	}
+	i = 0;
+	while (all->env_var && all->env_var[i]
+		&& ft_strncmp(str, all->env_var[i], ft_strlen(str)))
+	{
+		ut_stup_two(str, all, &i, &j);
+		i++;
+	}
+	if (j == 0)
+		return ;
+	if (all->env_var && all->env_var[i])
+		new_env(all, all->env_var[i]);
+	free(str);
+	free(tmp);
+}
+
 void	export_var(t_all *all, char **mx)
 {
 	int		i;
-	int		j;
 	char	*str;
 	char	*tmp;
 
@@ -91,28 +117,6 @@ void	export_var(t_all *all, char **mx)
 	ft_memcpy(str, mx[1], i);
 	tmp = ft_calloc(ft_strlen(mx[1]) + 1, 1);
 	ft_memcpy(tmp, mx[1], ft_strlen(mx[1]));
-	if (equal_count(all, 1))
-	{
-		check_export(all, str, tmp);
-		free(str);
-		free(tmp);
-		return ;
-	}
-	i = 0;
-	while (all->env_var && all->env_var[i]
-		&& ft_strncmp(str, all->env_var[i], ft_strlen(str)))
-	{
-		if (ft_strncmp(str, all->env_var[i], ft_strlen(str)))
-			j = 0;
-		else
-			j = 1;
-		i++;
-	}
-	if (j == 0)
-		return ;
-	if (all->env_var && all->env_var[i])
-		new_env(all, all->env_var[i]);
-	free(str);
-	free(tmp);
+	ut_export(all, str, tmp);
 	all->status = 0;
 }

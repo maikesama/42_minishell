@@ -30,9 +30,6 @@
 # include "./parser.h"
 # include "../lib/ft_printf/ft_printf.h"
 # include "../lib/libft/libft.h"
-# include "/usr/local/opt/readline/include/readline/readline.h"
-
-// int rl_save_state (struct readline_state *sp);
 
 typedef struct s_piper
 {
@@ -105,5 +102,9 @@ void	get_path(char *path_line, t_all *all);
 void	ft_wait_pipe(t_all *all, pid_t *id);
 void	export_var(t_all *all, char **mx);
 int		exit_error(t_all *all, char **mx);
+void	ut_stup_two(char *str, t_all *all, int *i, int *j);
+void	take_path(t_all *all);
+void	child_launcher(t_piper *piper, t_all *all, int cnt);
+void	err_pipe_exec(t_piper *piper, int cnt);
 
 #endif

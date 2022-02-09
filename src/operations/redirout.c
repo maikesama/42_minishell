@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   redirout.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mpaci <mpaci@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/09 16:52:19 by mpaci             #+#    #+#             */
+/*   Updated: 2022/02/09 16:52:20 by mpaci            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./../../headers/main.h"
 
 void	re_copy_tok(t_all *all, char **tmp)
@@ -47,15 +59,32 @@ void	write_on_opt(t_all *all, int *i)
 	all->fd_out = -1;
 	close(all->fd_out);
 	if (all->tok[*i][1] == '>')
-		all->fd_out = open(all->tok[*i + 1], O_CREAT | O_APPEND | O_WRONLY, 0777);
+		all->fd_out = open(all->tok[*i + 1], O_CREAT | O_APPEND | O_WRONLY,
+				0777);
 	else
-		all->fd_out = open(all->tok[*i + 1], O_CREAT | O_TRUNC | O_WRONLY, 0777);
+		all->fd_out = open(all->tok[*i + 1], O_CREAT | O_TRUNC | O_WRONLY,
+				0777);
 	if (all->fd_out == -1)
 	{
 		perror(all->tok[*i + 1]);
 		return ;
 	}
 	new_tok(all, i);
+}
+
+int	redirect_norm(t_all *all, int *i)
+{
+	if (all->tok[*i][1] != 0 && all->tok[*i][1] != '<')
+		return (0);
+	if (all->tok[*i + 1])
+	{
+		if (input(all, i))
+		{
+			all->ops->worra++;
+			*i -= 1;
+		}
+	}
+	return (1);
 }
 
 void	redirect(t_all *all)
@@ -77,34 +106,10 @@ void	redirect(t_all *all)
 		}
 		if (all->tok[i][0] == '<')
 		{
-			if (all->tok[i][1] != 0 && all->tok[i][1] != '<')
+			if (!redirect_norm(all, &i))
 				return ;
-			if (all->tok[i + 1])
-			{
-				if (input(all, &i))
-				{
-					all->ops->worra++;
-					i--;
-				}
-			}
 		}
 		if (all->tok[i])
 			i++;
-	}
-}
-
-void	set_in_out(t_all *all)
-{
-	if (all->ops->arrow)
-	{
-		dup2(all->fd_out, STDOUT_FILENO);
-		close(all->fd_out);
-	}
-	if (all->ops->worra)
-	{
-		if (all->ops->dworra)
-			all->fd_in = open("/tmp/file.txt", O_RDONLY);
-		dup2(all->fd_in, STDIN_FILENO);
-		close(all->fd_in);
 	}
 }

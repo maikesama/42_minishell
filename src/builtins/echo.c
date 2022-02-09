@@ -12,6 +12,13 @@
 
 #include "./../../headers/main.h"
 
+void	print_exit(t_all *all, int *i)
+{
+	ft_printf("%d", all->status);
+	if (all->tok[*i])
+		*i += 1;
+}
+
 void	echo_var(t_all *all, int *i, int *j)
 {
 	char	*str;
@@ -54,11 +61,7 @@ void	echo_just_for_norm(t_all *all, int i, int *j)
 		}
 		if (!ft_strncmp(all->tok[i], "$?", ft_strlen(all->tok[i]))
 			&& all->flag1 == 1)
-		{
-			ft_printf("%d", all->status);
-			if (all->tok[i])
-				i++;
-		}
+			print_exit(all, &i);
 		if (all->tok[i] && all->tok[i][*j] == '$' && all->flag1 == 1)
 			echo_var(all, &i, &*j);
 		if (all->tok[i] && all->tok[i][*j])
