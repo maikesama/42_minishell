@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipe_utils2.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mpaci <mpaci@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/09 16:52:03 by mpaci             #+#    #+#             */
+/*   Updated: 2022/02/09 16:52:04 by mpaci            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./../../headers/main.h"
 
 void	check_redirections(t_all *all, int j)
@@ -21,7 +33,7 @@ void	check_redirections(t_all *all, int j)
 	}
 }
 
-int	size_matter(t_all *all, int	j)
+int	size_matter(t_all *all, int j)
 {
 	int	i;
 
@@ -40,7 +52,8 @@ void	args_initializer(t_all *all, t_piper *piper, int *i, int cnt)
 
 	j = *i;
 	check_redirections(all, j);
-	piper[cnt].args = ft_calloc(size_matter(all, j) + 1, sizeof(*piper[cnt].args));
+	piper[cnt].args = ft_calloc(size_matter(all, j) + 1,
+			sizeof(*piper[cnt].args));
 	j = 0;
 	while (all->tok[*i] && all->tok[*i][0] && all->tok[*i][0] != '|')
 	{

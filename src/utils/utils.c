@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mpaci <mpaci@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/09 16:51:43 by mpaci             #+#    #+#             */
+/*   Updated: 2022/02/09 16:51:44 by mpaci            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./../../headers/main.h"
 
 void	free_matrix(char **mx)
@@ -20,8 +32,8 @@ void	free_matrix(char **mx)
 
 int	check_existence_env(t_all *all)
 {
-	char    *str;
-	int     i;
+	char	*str;
+	int		i;
 
 	i = 0;
 	if (!all->mini_env)
@@ -43,8 +55,8 @@ int	check_existence_env(t_all *all)
 
 int	check_existence_var(t_all *all)
 {
-	char    *str;
-	int     i;
+	char	*str;
+	int		i;
 
 	i = 0;
 	if (!all->env_var)
@@ -73,7 +85,6 @@ void	ft_wait_pipe(t_all *all, pid_t *id)
 	i = 0;
 	while (i <= all->ops->pipe)
 	{
-
 		wexit = waitpid(id[i], &status, WUNTRACED);
 		if (wexit == -1)
 			perror("waitpid");

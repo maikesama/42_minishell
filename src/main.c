@@ -12,43 +12,12 @@
 
 #include "./../headers/main.h"
 
-int	exit_error(t_all *all, char **mx)
-{
-	int	i;
-
-	i = 0;
-	if (mx && mx[0][0])
-	{
-		if (mx && mx[1] && mx[1][0])
-		{
-			if (mx[2])
-			{
-				ft_printf("exit: too many arguments\n");
-				return (1);
-			}	
-			while (mx[1][i])
-			{
-				if (!ft_isdigit(mx[1][i]))
-				{
-					ft_printf("exit: %s: numeric argument required\n",
-						mx[1]);
-					return (1);
-				}
-				i++;
-			}
-			all->status = ft_atoi(mx[1]);
-		}
-	}
-	return (0);
-}
-
 void	ft_exit(t_all *all)
 {
 	if (all->input == NULL)
 	{
 		if (all->mini_env)
 			free_matrix(all->mini_env);
-		// if (all->env_path){free_matrix(all->env_path);}
 		if (all->env_var)
 			free_matrix(all->env_var);
 		exit(EXIT_SUCCESS);
@@ -104,7 +73,7 @@ void	take_input(t_all *all)
 	if (all->input)
 		free(all->input);
 	all->input = readline(RL_S"\e[95m"RL_E "MiniShell>>> "
-		RL_S"\e[0m"RL_E);
+			RL_S"\e[0m"RL_E);
 	if (all->input == NULL)
 		ft_exit(all);
 	if (valid_history(all))
@@ -116,32 +85,11 @@ void	take_input(t_all *all)
 		return ;
 }
 
-void	take_path(t_all *all)
-{
-	int	i;
-	int	ret;
-
-	ret = 0;
-	i = 0;
-	while (all->mini_env && all->mini_env[i])
-	{
-		if (!ft_strncmp(all->mini_env[i], "PATH=", 5))
-		{
-			ret = 1;
-			get_path(all->mini_env[i], all);
-		}
-		i++;
-	}
-	if (ret == 0)
-		all->env_path = ft_calloc(1, sizeof(all->env_path));
-}
-
 int	main(int ac, char **av, char **env)
 {
 	t_all	all;
 	t_ops	ops;
 
-	//rl_catch_signals = 0;
 	ft_bzero(&all, sizeof(all));
 	ft_bzero(&ops, sizeof(ops));
 	free(all.input);

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipex.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mpaci <mpaci@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/09 16:52:07 by mpaci             #+#    #+#             */
+/*   Updated: 2022/02/09 16:52:08 by mpaci            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./../../headers/main.h"
 
 void	free_piper(t_piper *piper, t_all *all)
@@ -23,7 +35,7 @@ void	free_fds(int **fd, int lim)
 	int	i;
 
 	i = 0;
-	while(i <= lim)
+	while (i <= lim)
 	{
 		free(fd[i]);
 		i++;
@@ -36,8 +48,8 @@ void	fd_allocation(t_all *all)
 	int	i;
 
 	i = 0;
-	all->fd = malloc((all->ops->pipe + 2) * sizeof(int	*));
-	while(i <= all->ops->pipe)
+	all->fd = malloc((all->ops->pipe + 2) * sizeof(int *));
+	while (i <= all->ops->pipe)
 	{
 		all->fd[i] = (int *)malloc(2 * sizeof(int));
 		pipe(all->fd[i]);
@@ -47,13 +59,12 @@ void	fd_allocation(t_all *all)
 
 void	pipex(t_all *all)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
+	t_piper	*piper;
 
 	i = 0;
 	j = 0;
-	t_piper	*piper;
-
 	piper = malloc((all->ops->pipe + 2) * sizeof(*piper));
 	fd_allocation(all);
 	while (all->tok[i] != 0 && all->tok[i][0] != 0 && j <= all->ops->pipe)

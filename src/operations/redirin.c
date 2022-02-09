@@ -1,4 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   redirin.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mpaci <mpaci@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/09 16:52:15 by mpaci             #+#    #+#             */
+/*   Updated: 2022/02/09 16:52:16 by mpaci            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./../../headers/main.h"
+
+void	put_child_red(char *input, int fd)
+{
+	ft_putstr_fd(input, fd);
+	ft_putchar_fd('\n', fd);
+}
 
 void	child_red(t_all *all, int *i)
 {
@@ -24,12 +42,10 @@ void	child_red(t_all *all, int *i)
 			close(fd);
 			exit(EXIT_SUCCESS);
 		}
-		ft_putstr_fd(input, fd);
-		ft_putchar_fd('\n', fd);
+		put_child_red(input, fd);
 		free(input);
 	}
 }
-
 
 void	dworra(t_all *all, int *i)
 {
@@ -38,7 +54,6 @@ void	dworra(t_all *all, int *i)
 	all->fd_in = -1;
 	close(all->fd_in);
 	all->ops->dworra++;
-
 	red = fork();
 	if (red == -1)
 		return ;
