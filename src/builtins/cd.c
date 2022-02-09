@@ -12,16 +12,16 @@
 
 #include "./../../headers/main.h"
 
-void	coming_home(char *path, t_all *all)
+void	coming_home(char **path, t_all *all)
 {
 	int	i;
 
 	i = 0;
-	free(path);
+	free(*path);
 	while (all->mini_env[i])
 	{
 		if (!ft_strncmp("HOME=", all->mini_env[i], 5))
-			path = ft_substr(all->mini_env[i], 5,
+			*path = ft_substr(all->mini_env[i], 5,
 					ft_strlen(all->mini_env[i]) - 5);
 		i++;
 	}
@@ -56,7 +56,7 @@ void	change_directory(t_all *all)
 	if (!all->tok[1] || !ft_strncmp(all->tok[1], "˜", ft_strlen(all->tok[1])))
 	{
 		str = malloc(1);
-		coming_home(str, all);
+		coming_home(&str, all);
 		if (chdir((const char *)str) != 0)
 			cd_error(str);
 		free(str);

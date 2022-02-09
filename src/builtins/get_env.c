@@ -64,6 +64,20 @@ void	print_env(t_all *all)
 	}
 }
 
+void	next_level(t_all *all, char **env, int i)
+{
+	char	*str;
+	int		n;
+
+	str = ft_substr(env[i], 6, ft_strlen(env[i] - 6));
+	n = ft_atoi(str);
+	n += 1;
+	free(str);
+	str = ft_itoa(n);
+	all->mini_env[i] = ft_strjoin("SHLVL=", str);
+	free(str);
+}
+
 void	get_env(t_all *all, char **env)
 {
 	int	i;
@@ -72,8 +86,16 @@ void	get_env(t_all *all, char **env)
 	all->mini_env = ft_calloc(line_counter(env) + 1, sizeof(*all->mini_env));
 	while (env[i])
 	{
-		all->mini_env[i] = ft_calloc(ft_strlen(env[i]) + 1, 1);
-		ft_memcpy(all->mini_env[i], env[i], ft_strlen(env[i]));
-		i++;
+		if (!ft_strncmp(env[i], "SHLVL=", 6))
+		{
+			next_level(all, env, i);
+			i++;
+		}
+		else
+		{
+			all->mini_env[i] = ft_calloc(ft_strlen(env[i]) + 1, 1);
+			ft_memcpy(all->mini_env[i], env[i], ft_strlen(env[i]));
+			i++;
+		}
 	}
 }
