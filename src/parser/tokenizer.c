@@ -21,9 +21,9 @@ int	how_many_spaces(t_all *all)
 	j = 0;
 	while (all->input[i])
 	{
-		if (all->input[i] == '\'')
+		if (all->input[i] == '\'' && all->flag2 == 1)
 			all->flag1 *= -1;
-		if (all->input[i] == '"')
+		if (all->input[i] == '"' && all->flag1 == 1)
 			all->flag2 *= -1;
 		if (all->input[i] == ' ' && all->flag1 == 1 && all->flag2 == 1)
 			j++;
@@ -39,12 +39,14 @@ int	ft_searchnextlen(t_all *all, int i)
 	int	len;
 
 	len = 0;
-	while (all->input[i] != ' ' && all->input[i])
+	while (all->input[i])
 	{
-		if (all->input[i] == '\'')
+		if (all->input[i] == '\'' && all->flag2 == 1)
 			all->flag1 *= -1;
-		if (all->input[i] == '"')
+		if (all->input[i] == '"' && all->flag1 == 1)
 			all->flag2 *= -1;
+		if (all->input[i] == ' ' && all->flag1 == 1 && all->flag2 == 1)
+			break ;
 		len++;
 		i++;
 	}

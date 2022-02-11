@@ -12,13 +12,6 @@
 
 #include "./../../headers/main.h"
 
-// static void	ft_newline_sigint(int wstatus, int *newline)
-// {
-// 	if (WTERMSIG(wstatus) == SIGINT && *newline == 0)
-// 	{
-// 		*newline = *newline + 1;
-// 	}
-// }
 void	ft_wait(t_all *all, pid_t id)
 {
 	int	wexit;
@@ -36,24 +29,22 @@ void	ft_wait(t_all *all, pid_t id)
 	}
 	if (WIFEXITED(status))
 		all->status = WEXITSTATUS(status);
-}
+} 
 
-//funzione che cerca localmente 
-
-void	executioner_figlio(t_all *all, int i, int err)
+void	do_your_job_son(t_all *all, int i, int err)
 {
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
+	all->cmd = ft_calloc(ft_strlen(all->tok[0]) + 1, 1);
+	ft_memcpy(all->cmd, all->tok[0], ft_strlen(all->tok[0]));
+	execve(all->cmd, all->tok, all->mini_env);
 	if (!all->env_path || !all->env_path[0])
 	{
 		ft_printf("%s: No such file or directory\n", all->tok[0]);
 		exit(EXIT_FAILURE);
 	}
-	all->cmd = all->tok[0];
-	execve(all->cmd, all->tok, all->mini_env);
 	while (all->env_path && all->env_path[i])
 	{
-		all->cmd = all->tok[0];
 		all->cmd = ft_strjoin(all->env_path[i], all->tok[0]);
 		err = execve(all->cmd, all->tok, all->mini_env);
 		free(all->cmd);
@@ -61,7 +52,7 @@ void	executioner_figlio(t_all *all, int i, int err)
 	}
 	if (err == -1)
 	{
-		perror(all->tok[0]);
+		ft_printf("%s: command not found\n", all->tok[0]);
 		exit(EXIT_FAILURE);
 	}
 	exit(EXIT_SUCCESS);
@@ -83,7 +74,7 @@ void	executioner(t_all *all)
 		exit(EXIT_FAILURE);
 	}
 	if (id == 0)
-		executioner_figlio(all, i, err);
+		do_your_job_son(all, i, err);
 	ft_wait(all, id);
 	return ;
 }
