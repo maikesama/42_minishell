@@ -262,7 +262,10 @@ void	input_expand(t_all *all)
 		else if (all->input[i] == '$' && all->flag2 == 1)
 		{
 			delete_var(all, i);
-			i--;
+			if (!all->input || !all->input[i])
+				break ;
+			if (i > 0)
+				i--;
 		}
 		i++;
 	}

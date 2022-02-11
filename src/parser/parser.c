@@ -22,7 +22,7 @@
 
 void	read_cmd(t_all *all)
 {
-	if (all->tok[0][0] == 0)
+	if (all->tok && all->tok[0] && all->tok[0][0] == 0)
 		ft_printf(" : command not found\n");
 	else if (all->ops->pipe > 0)
 		pipex(all);
