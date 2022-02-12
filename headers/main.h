@@ -39,6 +39,7 @@ typedef struct s_piper
 
 typedef struct s_all
 {
+	char	*str;
 	int		redirected;
 	int		echoflag;
 	char	*input;
@@ -56,10 +57,13 @@ typedef struct s_all
 	int		saved_stdout;
 	int		saved_stdin;
 	int		status;
+	int		mode;
+	int		pos;
 	int		**fd;
 }				t_all;
 
 void	take_input(t_all *all);
+int		space_eraser(t_all *all, char *str);
 int		parser(t_all *all);
 void	print_dir(t_all *all);
 void	new_input(t_all *all);
@@ -81,7 +85,7 @@ void	re_copy_var(t_all *all, char **tmp);
 void	re_copy_env(t_all *all, char **tmp);
 void	unset_var(t_all *all, char **mx);
 void	echo(t_all *all);
-int		check_special(t_all *all, char *str);
+int		check_special(char *str);
 void	pipex(t_all *all);
 void	set_in_out(t_all *all);
 void	reset_in_out(t_all *all);
@@ -106,5 +110,6 @@ void	ut_stup_two(char *str, t_all *all, int *i, int *j);
 void	take_path(t_all *all);
 void	child_launcher(t_piper *piper, t_all *all, int cnt);
 void	err_pipe_exec(t_piper *piper, int cnt);
+void	input_expand(t_all *all);
 
 #endif

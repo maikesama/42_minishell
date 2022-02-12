@@ -102,6 +102,8 @@ void	export_var(t_all *all, char **mx)
 	char	*tmp;
 
 	i = 0;
+	if (!mx || !mx[0])
+		return ;
 	if (!mx[1])
 	{
 		while (all->mini_env[i])

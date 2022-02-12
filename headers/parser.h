@@ -30,6 +30,5 @@ int		spec_chars(char c);
 int		check_quotes(const char *input);
 void	jeyer(char	*str, int i, int *j, char spec_char);
 int		add_spaces(char *str, char spec_char);
-int		space_eraser(char *str);
 
 #endif
