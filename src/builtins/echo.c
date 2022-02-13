@@ -118,6 +118,8 @@ void	echo(t_all *all)
 	while (all->tok[i])
 	{
 		echo_just_for_norm(all, i, &j);
+		if (all->tok && all->tok[i] && all->tok[i + 1] && all->tok[i + 1][0])
+			write(1, " ", 1);
 		j = 0;
 		i++;
 	}
