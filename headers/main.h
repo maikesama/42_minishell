@@ -111,5 +111,9 @@ void	take_path(t_all *all);
 void	child_launcher(t_piper *piper, t_all *all, int cnt);
 void	err_pipe_exec(t_piper *piper, int cnt);
 void	input_expand(t_all *all);
+void	real_tok(t_all *all);
+int		check_builtins(t_all *all, t_piper *piper, int cnt);
+void	input_expand_ut(t_all *all, int *i, int len);
+void	expand_exit(t_all *all, char *tmp, int *n);
 
 #endif

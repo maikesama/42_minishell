@@ -29,14 +29,13 @@ void	ft_wait(t_all *all, pid_t id)
 	}
 	if (WIFEXITED(status))
 		all->status = WEXITSTATUS(status);
-} 
+}
 
-void	do_your_job_son(t_all *all, int i, int err)
+void	son_check(t_all *all)
 {
-	signal(SIGINT, SIG_DFL);
-	signal(SIGQUIT, SIG_DFL);
 	if (all->tok && all->tok[0] && all->tok[0][0] && ((all->tok[0][0] == '.'
-		&& all->tok[0][1] == '/') || all->tok[0][0] == '/' || !ft_strncmp(all->tok[0], "make", ft_strlen(all->tok[0]))))
+		&& all->tok[0][1] == '/') || all->tok[0][0] == '/'
+		|| !ft_strncmp(all->tok[0], "make", ft_strlen(all->tok[0]))))
 	{
 		all->cmd = ft_calloc(ft_strlen(all->tok[0]) + 1, 1);
 		ft_memcpy(all->cmd, all->tok[0], ft_strlen(all->tok[0]));
@@ -47,6 +46,13 @@ void	do_your_job_son(t_all *all, int i, int err)
 		ft_printf("%s: No such file or directory\n", all->tok[0]);
 		exit(EXIT_FAILURE);
 	}
+}
+
+void	do_your_job_son(t_all *all, int i, int err)
+{
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
+	son_check(all);
 	while (all->env_path && all->env_path[i])
 	{
 		all->cmd = ft_strjoin(all->env_path[i], all->tok[0]);
