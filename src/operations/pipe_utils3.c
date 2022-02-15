@@ -45,8 +45,16 @@ void	last_child(t_piper *piper, t_all *all, int cnt)
 	close(all->fd[cnt][0]);
 	close(all->fd[cnt][1]);
 	set_in_out(all);
+	if (piper[cnt].cmd && piper[cnt].cmd[0] && ((piper[cnt].cmd[0] == '.'
+		&& piper[cnt].cmd[1] == '/') || piper[cnt].cmd[0] == '/'))
+		execve(piper[cnt].cmd, piper[cnt].args, all->mini_env);
 	if (check_builtins(all, piper, cnt))
 		exit(all->status);
+	if (!all->env_path || !all->env_path[0])
+	{
+		ft_printf("%s: No such file or directory\n", all->tok[0]);
+		exit(EXIT_FAILURE);
+	}
 	while (all->env_path[i])
 	{
 		all->cmd = ft_strjoin(all->env_path[i], piper[cnt].cmd);
@@ -70,8 +78,16 @@ void	next_children(t_piper *piper, t_all *all, int cnt)
 	close(all->fd[cnt - 1][0]);
 	close(all->fd[cnt][1]);
 	set_in_out(all);
+	if (piper[cnt].cmd && piper[cnt].cmd[0] && ((piper[cnt].cmd[0] == '.'
+		&& piper[cnt].cmd[1] == '/') || piper[cnt].cmd[0] == '/'))
+		execve(piper[cnt].cmd, piper[cnt].args, all->mini_env);
 	if (check_builtins(all, piper, cnt))
 		exit(all->status);
+	if (!all->env_path || !all->env_path[0])
+	{
+		ft_printf("%s: No such file or directory\n", all->tok[0]);
+		exit(EXIT_FAILURE);
+	}
 	while (all->env_path[i])
 	{
 		all->cmd = ft_strjoin(all->env_path[i], piper[cnt].cmd);
@@ -94,8 +110,16 @@ void	first_child(t_piper *piper, t_all *all)
 	close(all->fd[0][0]);
 	close(all->fd[0][1]);
 	set_in_out(all);
+	if (piper[0].cmd && piper[0].cmd[0] && ((piper[0].cmd[0] == '.'
+		&& piper[0].cmd[1] == '/') || piper[0].cmd[0] == '/'))
+		execve(piper[0].cmd, piper[0].args, all->mini_env);
 	if (check_builtins(all, piper, 0))
 		exit(all->status);
+	if (!all->env_path || !all->env_path[0])
+	{
+		ft_printf("%s: No such file or directory\n", all->tok[0]);
+		exit(EXIT_FAILURE);
+	}
 	while (all->env_path[i])
 	{
 		all->cmd = ft_strjoin(all->env_path[i], piper[0].cmd);

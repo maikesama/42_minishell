@@ -35,9 +35,13 @@ void	do_your_job_son(t_all *all, int i, int err)
 {
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
-	all->cmd = ft_calloc(ft_strlen(all->tok[0]) + 1, 1);
-	ft_memcpy(all->cmd, all->tok[0], ft_strlen(all->tok[0]));
-	execve(all->cmd, all->tok, all->mini_env);
+	if (all->tok && all->tok[0] && all->tok[0][0] && ((all->tok[0][0] == '.'
+		&& all->tok[0][1] == '/') || all->tok[0][0] == '/' || !ft_strncmp(all->tok[0], "make", ft_strlen(all->tok[0]))))
+	{
+		all->cmd = ft_calloc(ft_strlen(all->tok[0]) + 1, 1);
+		ft_memcpy(all->cmd, all->tok[0], ft_strlen(all->tok[0]));
+		execve(all->cmd, all->tok, all->mini_env);
+	}
 	if (!all->env_path || !all->env_path[0])
 	{
 		ft_printf("%s: No such file or directory\n", all->tok[0]);
