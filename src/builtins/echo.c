@@ -12,39 +12,6 @@
 
 #include "./../../headers/main.h"
 
-// void	print_exit(t_all *all, int *i)
-// {
-// 	ft_printf("%d", all->status);
-// 	if (all->tok[*i])
-// 		*i += 1;
-// }
-
-// void	echo_var(t_all *all, int *i, int *j)
-// {
-// 	char	*str;
-// 	int		l;
-
-// 	l = 0;
-// 	*j += 1;
-// 	while (all->tok[*i][*j + l] && all->tok[*i][*j + l] != '\''
-// 		&& all->tok[*i][*j + l] != '"')
-// 		l++;
-// 	str = ft_calloc(l + 1, 1);
-// 	l = 0;
-// 	while (all->tok[*i][*j + l] && all->tok[*i][*j + l] != '\''
-// 		&& all->tok[*i][*j + l] != '"')
-// 	{
-// 		str[l] = all->tok[*i][*j + l];
-// 		l++;
-// 	}
-// 	*j += l;
-// 	if (all->tok[*i][*j] == '"')
-// 		*j += 1;
-// 	if (is_var(all, str))
-// 		write_var(all, str);
-// 	free(str);
-// }
-
 void	echo_just_for_norm(t_all *all, int i, int *j)
 {
 	while (all->tok && all->tok[i] && all->tok[i][*j])
