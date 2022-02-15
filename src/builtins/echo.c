@@ -52,6 +52,14 @@ void	skip_flags(t_all *all, int *i)
 	}
 }
 
+void	echo_flag_control(t_all *all)
+{
+	if (all->echoflag == 0)
+		ft_printf("\n");
+	else if (all->echoflag == 1)
+		all->echoflag = 0;
+}
+
 void	echo(t_all *all)
 {
 	int	i;
@@ -75,9 +83,6 @@ void	echo(t_all *all)
 		j = 0;
 		i++;
 	}
-	if (all->echoflag == 0)
-		ft_printf("\n");
-	else if (all->echoflag == 1)
-		all->echoflag = 0;
+	echo_flag_control(all);
 	all->status = 0;
 }

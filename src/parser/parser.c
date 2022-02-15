@@ -12,14 +12,6 @@
 
 #include "./../../headers/main.h"
 
-// void	pid_status(void)
-// {
-// 	pid_t	id;
-
-// 	id = getpid();
-// 	ft_printf("%d: command not found\n", id);
-// }
-
 void	read_cmd(t_all *all)
 {
 	if (all->tok && all->tok[0] && all->tok[0][0] == 0)
@@ -44,74 +36,6 @@ void	read_cmd(t_all *all)
 		echo(all);
 	else
 		executioner(all);
-}
-
-int	real_size(t_all *all, int i)
-{
-	int	j;
-	int	cnt;
-
-	cnt = 0;
-	j = 0;
-	while (all->tok[i][j])
-	{
-		if (all->tok[i][j] == '"' && all->flag2 == 1)
-		{
-			cnt++;
-			all->flag1 *= -1;
-		}
-		else if (all->tok[i][j] == '\'' && all->flag1 == 1)
-		{
-			cnt++;
-			all->flag2 *= -1;
-		}
-		j++;
-	}
-	return (cnt);
-}
-
-void	real_copy(t_all *all, char **tmp, int i)
-{
-	int	j;
-	int	n;
-
-	j = 0;
-	n = 0;
-	while (all->tok[i][j])
-	{
-		if (all->tok[i][j] == '"' && all->flag2 == 1)
-		{
-			j++;
-			all->flag1 *= -1;
-		}
-		else if (all->tok[i][j] == '\'' && all->flag1 == 1)
-		{
-			j++;
-			all->flag2 *= -1;
-		}
-		else
-			tmp[i][n++] = all->tok[i][j++];
-	}
-}
-
-void	real_tok(t_all *all)
-{
-	char	**tmp;
-	int		i;
-
-	i = 0;
-	tmp = ft_calloc(line_counter(all->tok) + 1, sizeof(*tmp));
-	if (!tmp)
-		return ;
-	while (all->tok[i])
-	{
-		tmp[i] = ft_calloc((ft_strlen(all->tok[i]) - real_size(all, i)) + 1, 1);
-		real_copy(all, tmp, i);
-		i++;
-	}
-	free_matrix(all->tok);
-	re_copy_tok(all, tmp);
-	free_matrix(tmp);
 }
 
 void	check_for_pipex(t_all *all)
@@ -143,7 +67,7 @@ int	check_space(char *str)
 	return (1);
 }
 
-int	parser(t_all *all)
+int	check_all(t_all *all)
 {
 	if (!all->input || !all->input[0] || !check_space(all->input))
 	{
@@ -156,6 +80,13 @@ int	parser(t_all *all)
 		ft_printf("Error. Wrong input.\n");
 		return (0);
 	}
+	return (1);
+}
+
+int	parser(t_all *all)
+{
+	if (!check_all(all))
+		return (0);
 	new_input(all);
 	input_expand(all);
 	input_tok(all);
