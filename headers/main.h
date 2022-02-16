@@ -116,5 +116,7 @@ int		check_builtins(t_all *all, t_piper *piper, int cnt);
 int		input_expand_ut(t_all *all, int *i, int len);
 void	expand_exit(t_all *all, char *tmp, int *n);
 void	delete_var(t_all *all, int i);
+int		ft_max(int first, int second);
+void	garbage(char **mx, t_all *all, int *len);
 
 #endif

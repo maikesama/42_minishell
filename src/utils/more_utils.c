@@ -47,3 +47,18 @@ void	expand_exit(t_all *all, char *tmp, int *n)
 	}
 	free(str);
 }
+
+int	ft_max(int first, int second)
+{
+	if (first > second)
+		return (first);
+	else
+		return (second);
+}
+
+void	garbage(char **mx, t_all *all, int *len)
+{
+	while (mx[all->pos][*len]
+			&& mx[all->pos][*len] != '=')
+		*len += 1;
+}

@@ -57,10 +57,9 @@ int	where_is_it(t_all *all)
 	len = 0;
 	while (all->mini_env && all->mini_env[all->pos])
 	{
-		while (all->mini_env[all->pos][len]
-			&& all->mini_env[all->pos][len] != '=')
-			len++;
-		if (!ft_strncmp(all->str, all->mini_env[all->pos], len))
+		garbage(all->mini_env, all, &len);
+		if (!ft_strncmp(all->str, all->mini_env[all->pos], ft_max(len,
+					ft_strlen(all->str))))
 			return (check_var_len(all, all->pos, 0));
 		len = 0;
 		all->pos++;
@@ -68,10 +67,9 @@ int	where_is_it(t_all *all)
 	all->pos = 0;
 	while (all->env_var && all->env_var[all->pos])
 	{
-		while (all->env_var[all->pos][len]
-			&& all->env_var[all->pos][len] != '=')
-			len++;
-		if (!ft_strncmp(all->str, all->env_var[all->pos], len))
+		garbage(all->env_var, all, &len);
+		if (!ft_strncmp(all->str, all->env_var[all->pos],
+				ft_max(len, ft_strlen(all->str))))
 			return (check_var_len(all, all->pos, 1));
 		len = 0;
 		all->pos++;
