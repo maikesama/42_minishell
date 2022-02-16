@@ -115,9 +115,14 @@ void	input_expand(t_all *all)
 		if (all->input[i] == '$' && all->flag2 == 1)
 		{
 			len = variable_found(all, i);
-			input_expand_ut(all, &i, len);
-			if (!all->input || !all->input[i])
-				break ;
+			if (!input_expand_ut(all, &i, len))
+			{
+				delete_var(all, i);
+				if (!all->input || !all->input[i])
+					break ;
+				if (i > 0)
+					i -= 1;
+			}
 		}
 		i++;
 	}

@@ -95,17 +95,13 @@ void	delete_var(t_all *all, int i)
 	free(tmp);
 }
 
-void	input_expand_ut(t_all *all, int *i, int len)
+int	input_expand_ut(t_all *all, int *i, int len)
 {
 	if (len > 0)
 	{
 		copy_var(all, *i, len);
 		*i -= 1;
+		return (1);
 	}
-	else
-	{
-		delete_var(all, *i);
-		if (*i > 0)
-			*i -= 1;
-	}
+	return (0);
 }
